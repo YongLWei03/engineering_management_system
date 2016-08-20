@@ -2,7 +2,7 @@
 
 body{
     /*background: url(https://unsplash.imgix.net/photo-1415226581130-91cb7f52f078?q=75&fm=jpg&s=859a0a6f863f8eb93a489c98402e687b);*/
-    background: url(http://www.denham-surveyors.com/SiteAssets/Pages/Forms/EditForm/SurveyImage3.jpg);
+    background: url(../image/SurveyImage.jpg);
     background-color: #444;
     background-size:   cover;
     background-repeat: no-repeat;
