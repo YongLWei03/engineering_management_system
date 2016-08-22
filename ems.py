@@ -2,9 +2,9 @@
 
 import os
 from flask import Flask, render_template
-from flask.ext.bootstrap import Bootstrap
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.script import Manager
+from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
+from flask_script import Manager
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
