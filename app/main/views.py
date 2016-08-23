@@ -1,8 +1,9 @@
 # --*-- coding:utf-8 --*--
 
-from flask import render_template
+from flask import redirect
 
 from . import main
+
 
 @main.route("/", methods=["GET", "POST"])
 def index():
