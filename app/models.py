@@ -1,6 +1,6 @@
 # --*-- coding:utf-8 --*--
 
-from app.ems import db
+from . import db
 
 
 class Role(db.Model):
