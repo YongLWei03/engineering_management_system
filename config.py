@@ -12,9 +12,7 @@ class config:
 
 class DevelopmentConfig(config):
     DEBUG = True
-    SQLAlCHEMY_DATABASE_URI = (os.environ.get("DEV_DATABASE_URL") or
-                               "sqlite:///" + os.path.join(
-                                   basedir, 'data-dev.sqlite'))
+    SQLAlCHEMY_DATABASE_URI = (os.environ.get("DEV_DATABASE_URL") or "sqlite:///" + os.path.join(basedir, 'data-dev.sqlite'))
 
 
 class ProductionConfig(config):
