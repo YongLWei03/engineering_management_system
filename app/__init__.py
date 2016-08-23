@@ -15,7 +15,6 @@ def create_app(config_name):
     config[config_name].init_app(app)
 
     print config[config_name]
-    print config[config_name].SQLAlCHEMY_DATABASE_URI
 
     bootstrap.init_app(app)
     db.init_app(app)
