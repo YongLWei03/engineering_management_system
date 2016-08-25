@@ -25,6 +25,9 @@
                     </div>
                     <form accept-charset="UTF-8" role="form">
                     {{ wtf.quick_form(form) }}
+                    {{ form.account(placeholder="账号") }}
+                    {{ form.password(placeholder="密码") }}
+                    {{ form.submit() }}
                     <!--
                     <fieldset>
                         <div class="form-group">
