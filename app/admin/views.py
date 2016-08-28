@@ -8,5 +8,5 @@ from . import admin
 
 @admin.route("/", methods=["GET", "POST"])
 @login_required
-def admin():
+def index():
     return render_template("admin/index.html")
