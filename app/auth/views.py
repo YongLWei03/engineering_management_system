@@ -13,6 +13,8 @@ def login():
     form = Login_form()
     print 'f'*100
     print form.validate_on_submit()
+    print form.emial.data
+    print form.password.data
     if form.validate_on_submit():
         print 'f'*100
         user = User.query.filter_by(email=form.email.data).first()
