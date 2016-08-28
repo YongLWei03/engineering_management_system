@@ -1,4 +1,4 @@
-# --*-- coding:utf-8 --*--
+# -*- coding: utf-8 -*-
 
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user
@@ -13,7 +13,7 @@ def login():
     form = Login_form()
     print 'f'*100
     print form.validate_on_submit()
-    print form.emial.data
+    print form.email.data
     print form.password.data
     if form.validate_on_submit():
         print 'f'*100
