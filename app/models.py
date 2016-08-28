@@ -1,4 +1,4 @@
-# --*-- coding:utf-8 --*--
+# -*- coding: utf-8 -*-
 
 from . import db
 from . import login_manager
