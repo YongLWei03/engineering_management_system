@@ -9,6 +9,5 @@ from . import admin
 @admin.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-    print 'c'*100
-    print current_user
-    return render_template("admin/index.html")
+    user = current_user
+    return render_template("admin/index.html", user=user)
