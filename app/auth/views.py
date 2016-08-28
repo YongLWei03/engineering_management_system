@@ -11,6 +11,7 @@ from ..models import User
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     form = Login_form()
+    print 'f'*100
     if form.validate_on_submit():
         print 'f'*100
         user = User.query.filter_by(email=form.email.data).first()
