@@ -12,6 +12,7 @@ from ..models import User
 def login():
     form = Login_form()
     print 'f'*100
+    print form.validate_on_submit()
     if form.validate_on_submit():
         print 'f'*100
         user = User.query.filter_by(email=form.email.data).first()
