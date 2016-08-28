@@ -25,6 +25,7 @@
                     </div>
                     <fieldset>
                     <form accept-charset="UTF-8" role="form" method="POST">
+                    {{ form.hidden_tag() }}
                     <div class="form-group">
                     {{ form.email(placeholder="账号",class="form-control") }}
                     </div>
