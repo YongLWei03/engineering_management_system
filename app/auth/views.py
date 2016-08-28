@@ -16,8 +16,8 @@ def login():
     print form.email.data
     print form.password.data
     if form.validate_on_submit():
-        print 'f'*100
         user = User.query.filter_by(email=form.email.data).first()
+        print user
         if user and user.verify_password(form.password.data):
             login_user(user)
             return redirect(request.args.get("next") or url_for("main.index"))
