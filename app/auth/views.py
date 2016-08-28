@@ -18,7 +18,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         print user
-        print user.verigy_password(form.password.data)
+        print user.verify_password(form.password.data)
         if user and user.verify_password(form.password.data):
             login_user(user)
             return redirect(request.args.get("next") or url_for("main.index"))
