@@ -1,6 +1,10 @@
 {% extends "bootstrap/base.html" %}
 
+{% block head %}
+{{ super() }}
 {% block title %}工程管理系统{% endblock %}
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
 
 {% block navbar %}
 <nav class="navbar navbar-default navbar-inverse" role="navigation">
