@@ -10,6 +10,4 @@ from . import admin
 @login_required
 def index():
     user = current_user
-    return render_template("admin/index.html", user=user)
-
-
+    return render_template("admin/index.html", current_user=user)
