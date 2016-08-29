@@ -22,6 +22,7 @@ class User(UserMixin, db.Model):
     nickname = db.Column(db.String(64))
     # companyId = db.Column(db.Integer)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
     password_hash = db.Column(db.String(128))
 
     @property
@@ -34,6 +35,14 @@ class User(UserMixin, db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+
+class Department(db.Model):
+    __tablename__ = "departments"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    parent_id = db.Column(db.Integer)
+    users = db.relationship('User', backref='department')
 
 
 @login_manager.user_loader
