@@ -39,7 +39,7 @@ body{
     width: 100%;
     color: #449d44;
     text-shadow:#4cae4c;
-    text-align: center;
+    /*text-align: center;*/
 }
 .login hr{
     margin: 5px;
