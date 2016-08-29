@@ -10,4 +10,5 @@ from . import staff
 @login_required
 def department():
     user = current_user
+    return "avcde"
     return render_template("admin/index.html", user=user)
