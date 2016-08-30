@@ -26,7 +26,14 @@
         {name:"test2_1"}, {name:"test2_2"}]}
         ];
     $(document).ready(function(){
-        zTreeObj = $.fn.zTree.init($("#department_tree"), setting, zNodes);
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/staff/department/get_tree_json/",
+            success: function(departments){
+                zTreeObj = $.fn.zTree.init($("#department_tree"), setting, departments);
+            }
+        })
     });
     </SCRIPT>
 {% endblock %}

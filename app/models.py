@@ -44,9 +44,12 @@ class Department(db.Model):
     pId = db.Column(db.Integer)
     users = db.relationship('User', backref='department')
 
-    @classmethod
-    def get_tree_json(cls):
-        pass
+    def to_dict(self):
+        return {
+            id: self.id,
+            pId: self.pId,
+            name: self.name
+        }
 
 
 @login_manager.user_loader
