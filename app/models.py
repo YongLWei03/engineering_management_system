@@ -41,8 +41,12 @@ class Department(db.Model):
     __tablename__ = "departments"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
-    parent_id = db.Column(db.Integer)
+    pId = db.Column(db.Integer)
     users = db.relationship('User', backref='department')
+
+    @classmethod
+    def get_tree_json(cls):
+        pass
 
 
 @login_manager.user_loader
