@@ -20,7 +20,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     nickname = db.Column(db.String(64))
-    # companyId = db.Column(db.Integer)
+    company_id = db.Column(db.Integer)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
     password_hash = db.Column(db.String(128))
@@ -49,7 +49,7 @@ class Department(db.Model):
         self.pId = pId
 
     def to_dict(self):
-        return {id: self.id, pId: self.pId, name: self.name}
+        return {"id": self.id, "pId": self.pId, "name": self.name}
 
 
 @login_manager.user_loader
