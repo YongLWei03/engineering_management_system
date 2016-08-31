@@ -44,12 +44,12 @@ class Department(db.Model):
     pId = db.Column(db.Integer)
     users = db.relationship('User', backref='department')
 
+    def __init__(self, name, pId):
+        self.name = name
+        self.pId = pId
+
     def to_dict(self):
-        return {
-            id: self.id,
-            pId: self.pId,
-            name: self.name
-        }
+        return {id: self.id, pId: self.pId, name: self.name}
 
 
 @login_manager.user_loader
