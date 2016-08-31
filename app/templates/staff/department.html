@@ -43,6 +43,25 @@
 			selectedMulti:false  
 		}, 
     };
+    var newCount = 1;
+	function addHoverDom(treeId, treeNode) {
+		var sObj = $("#" + treeNode.tId + "_span");
+		if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+		var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+			+ "' title='add node' onfocus='this.blur();'></span>";
+		sObj.after(addStr);
+		var btn = $("#addBtn_"+treeNode.tId);
+		if (btn) btn.bind("click", function(){
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			var nodeId = 100 + newCount;
+			var name = "新分类" + (newCount++);
+			addTreeNode(treeNode,name,zTree);
+			return false;
+		});
+	};
+	function removeHoverDom(treeId, treeNode) {
+		$("#addBtn_"+treeNode.tId).unbind().remove();
+	};
     $(document).ready(function(){
         $.ajax({
             type: "GET",
