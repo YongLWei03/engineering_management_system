@@ -6,8 +6,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid" style="height:50em;background-color:white">
-    <ul id="department_tree" class="ztree"></ul>
+<div class="container-fluid" style="height:45em;background-color:white">
+    <div>
+        <ul id="department_tree" class="ztree"></ul>
+    </div>
 </div>
 {% endblock %}
 
@@ -17,7 +19,12 @@
 <SCRIPT LANGUAGE="JavaScript">
     var zTreeObj;
     // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-    var setting = {};
+    var setting = {
+        setting.edit.showRemoveBtn = true
+		setting.edit.showRenameBtn = true
+		setting.edit.removeTitle = "删除"
+		setting.edit.renameTitle = "编辑"
+    };
     // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
     var zNodes = [
         {name:"test1", open:true, children:[
