@@ -18,38 +18,94 @@
 <script src="//cdn.bootcss.com/zTree.v3/3.5.24/js/jquery.ztree.all.min.js"></script>
 <SCRIPT LANGUAGE="JavaScript">
     var zTreeObj;
-    // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
     var setting = {
-        edit:{
-            enable: true,
-			showRemoveBtn: true,
-			showRenameBtn: true,
-			removeTitle: "删除",
-			renameTitle: "编辑"
+        view: {
+            addHoverDom: addHoverDom,
+            removeHoverDom: removeHoverDom,
+            selectedMulti: false
         },
-		data: {
-			simpleData: {
-				enable: true,
-			}
-		},
-        view:{  
-			addHoverDom:addHoverDom,  
-			removeHoverDom:removeHoverDom,  
-		}, 
+        edit: {
+            enable: true,
+            editNameSelectAll: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            beforeDrag: beforeDrag,
+            beforeEditName: beforeEditName,
+            beforeRemove: beforeRemove,
+            beforeRename: beforeRename,
+            onRemove: onRemove,
+            onRename: onRename
+        }
     };
+    var log, className = "dark";
+    function beforeDrag(treeId, treeNodes) {
+        return false;
+    }
+    function beforeEditName(treeId, treeNode) {
+        className = (className === "dark" ? "":"dark");
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        zTree.selectNode(treeNode);
+    }
+    function beforeRemove(treeId, treeNode) {
+        var isRoot = treeNode.pId; //判断是否为根节点
+        if(isRoot==0){
+            alert("不能删除根节点！");
+            return false;
+        }
+    
+        var isParent = treeNode.isParent; //判断是否为父节点
+        if(isParent==true){
+            alert("不能删除包含子分类的数据！");
+            return false;
+        }else{
+            className = (className === "dark" ? "":"dark");
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.selectNode(treeNode);
+            return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
+        }
+    }
+    function onRemove(e, treeId, treeNode) {
+        removeTreeNode(treeNode.pId,treeNode.id,treeNode.name);
+    }
+    function beforeRename(treeId, treeNode, newName, isCancel) {
+        className = (className === "dark" ? "":"dark");
+    
+        if (newName.length == 0) {
+            alert("节点名称不能为空.");
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            setTimeout(function(){zTree.editName(treeNode)}, 10);
+            return false;
+        }
+        return true;
+    }
+    function onRename(e, treeId, treeNode, isCancel) {
+        updateTreeNode(treeNode.pId,treeNode.id,treeNode.name);
+        alert("修改成功！");
+    }
+    
+    var newCount = 1;
     function addHoverDom(treeId, treeNode) {
-        var aObj = $("#" + treeNode.tId + "_a");
-        if ($("#diyBtn_"+treeNode.id).length>0) return;
-        var editStr = "<span id='diyBtn_space_" +treeNode.id+ "' > </span>"
-    	+ "<button type='button' class='diyBtn1' id='diyBtn_" + treeNode.id
-    	+ "' title='"+treeNode.name+"' onfocus='this.blur();'></button>";
-        aObj.append(editStr);
-        var btn = $("#diyBtn_"+treeNode.id);
-        if (btn) btn.bind("click", function(){alert("diy Button for " + treeNode.name);});
+        var sObj = $("#" + treeNode.tId + "_span");
+        if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+        var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+            + "' title='add node' onfocus='this.blur();'></span>";
+        sObj.after(addStr);
+        var btn = $("#addBtn_"+treeNode.tId);
+        if (btn) btn.bind("click", function(){
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            var nodeId = 100 + newCount;
+            var name = "新分类" + (newCount++);
+            addTreeNode(treeNode,name,zTree);
+            return false;
+        });
     };
     function removeHoverDom(treeId, treeNode) {
-        $("#diyBtn_"+treeNode.id).unbind().remove();
-        $("#diyBtn_space_" +treeNode.id).unbind().remove();
+        $("#addBtn_"+treeNode.tId).unbind().remove();
     };
     $(document).ready(function(){
         $.ajax({
@@ -60,6 +116,37 @@
                 zTreeObj = $.fn.zTree.init($("#department_tree"), setting, departments);
             }
         })
+    });
+    function updateTreeNode(pId,id,name){
+        var dataForm = "pId="+pId+"&id="+id+"&name="+name;
+        $.ajax({
+            type: "POST",
+            cache : false,
+            headers: { "cache-control": "no-cache" },
+            dataType: "json",
+            url: "/admin/tree/departments/update_json",
+            data: dataForm,
+            success: function(msg){
+                if(msg.success=="True"){
+                }else{
+                    alert("操作失败，请联系管理员！");
+                }
+            }
+        });
+    }
+    //选择
+    $("#saveBtn").click(function(e) {
+           var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        var nodes = zTree.getSelectedNodes();
+        try{
+            if(user_id==00000){ //选择部门
+                parent.selDept(nodes[0].id,nodes[0].name);
+                parent.hideSelDept();
+            }else{ //修改部门
+                saveSelDept(nodes[0].id,nodes[0].name);
+            }
+    
+        }catch(e){}
     });
     </SCRIPT>
 {% endblock %}
