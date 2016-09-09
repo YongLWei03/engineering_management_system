@@ -45,9 +45,7 @@
     	+ "' title='"+treeNode.name+"' onfocus='this.blur();'></button>";
         aObj.append(editStr);
         var btn = $("#diyBtn_"+treeNode.id);
-        if (btn) btn.bind("click", function(){
-            alert("aaa");
-	});
+        if (btn) btn.bind("click", function(){alert("diy Button for " + treeNode.name);});
     };
     function removeHoverDom(treeId, treeNode) {
         $("#diyBtn_"+treeNode.id).unbind().remove();
