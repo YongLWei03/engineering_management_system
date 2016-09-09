@@ -37,20 +37,41 @@
 	    removeHoverDom:removeHoverDom,  
         }, 
     };
+    var count = 1
     function addHoverDom(treeId, treeNode) {
         var aObj = $("#" + treeNode.tId + "_a");
-        if ($("#diyBtn_"+treeNode.id).length>0) return;
-        var editStr = "<span class='button add' id='diyBtn_space_" +treeNode.id+ "' > </span>"
-    	+ "<button type='button' class='diyBtn1 hidden' id='diyBtn_" + treeNode.id
-    	+ "' title='"+treeNode.name+"' onfocus='this.blur();'></button>";
+        if ($("#addBtn_"+treeNode.id).length>0) return;
+        var editStr = "<span class='button add' id='addBtn_" +treeNode.id+ "' > </span>";
         aObj.append(editStr);
-        var btn = $("#diyBtn_"+treeNode.id);
-        if (btn) btn.bind("click", function(){alert("diy Button for " + treeNode.name);});
+        var btn = $("#addBtn_"+treeNode.id);
+        if (btn) btn.bind("click", function(){
+	    alert("diy Button for " + treeNode.name);
+	    var zTree = $.fn.zTree.getZTreeObj("department_tree");
+            var name = "新部门" + (count++);
+            addTreeNode(treeNode,name,zTree);
+	});
     };
     function removeHoverDom(treeId, treeNode) {
-        $("#diyBtn_"+treeNode.id).unbind().remove();
-        $("#diyBtn_space_" +treeNode.id).unbind().remove();
+        $("#addBtn_"+treeNode.id).unbind().remove();
     };
+    function add_dep(node, name, tree){
+	var data_form = "current_id=" + current_id + "&name=" + name;
+	$.ajax({
+            type: "POST",
+	    cache: "false",
+	    url: "/staff/department/add/",
+	    dataType: "json"
+	    success: function(msg){
+		if(msg.info=="success"){
+                    id = msg.id;
+	            tree.addNodes(node, {id:id, pId:node.id, name:name});
+		}
+		else{
+		    alert("添加失败！");
+		}
+	    }
+	})
+    }
     $(document).ready(function(){
         $.ajax({
             type: "GET",

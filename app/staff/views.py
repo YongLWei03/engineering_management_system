@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 
-from flask import render_template
+from flask import render_template, request
 from flask_login import login_required, current_user
 import json
 
 from . import staff
 from app.models import Department
+from app import db
 
 
 @staff.route("/department/", methods=["GET", "POST"])
@@ -21,3 +22,16 @@ def get_tree_json():
     query_data = Department.query.all()
     departments = [i.to_dict() for i in query_data]
     return json.dumps(departments)
+
+
+@staff.route("/department/add/", methods=["POST"])
+@login_required
+def add_department():
+    try:
+        current_id = request.form["current_id"]
+        name = request.form["name"]
+        new_dep = Department(name=name, pId=int(current_id))
+        db.session.add(new_dep)
+        return json.dumps({"info": "success", "new_id": new_dep.id})
+    except:
+        return json.dumps({"info": "fail"})
