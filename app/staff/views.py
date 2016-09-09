@@ -3,6 +3,7 @@
 from flask import render_template, request
 from flask_login import login_required, current_user
 import json
+import traceback
 
 from . import staff
 from app.models import Department
@@ -34,4 +35,5 @@ def add_department():
         db.session.add(new_dep)
         return json.dumps({"info": "success", "new_id": new_dep.id})
     except:
+        print traceback.format_exc()
         return json.dumps({"info": "fail"})
