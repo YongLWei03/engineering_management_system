@@ -37,3 +37,18 @@ def add_department():
     except:
         print traceback.format_exc()
         return json.dumps({"info": "fail"})
+
+
+@staff.route("/department/rename/", methods=["POST"])
+@login_required
+def rename_department():
+    try:
+        dep_id = request.form["dep_id"]
+        new_name = request.form["name"]
+        dep = Department.query.get(int(dep_id))
+        dep.name = new_name
+        db.session.add(dep)
+        return json.dumps({"info": "success"})
+    except:
+        print traceback.format_exc()
+        return json.dumps({"info": "fail"})
