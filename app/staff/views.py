@@ -10,7 +10,7 @@ from app.models import Department
 from app import db
 
 
-@staff.route("/department/", methods=["GET", "POST"])
+@staff.route("/manage/", methods=["GET", "POST"])
 @login_required
 def department():
     user = current_user

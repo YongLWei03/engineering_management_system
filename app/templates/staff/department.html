@@ -2,14 +2,18 @@
 
 {% block styles %}
 {{ super() }}
-<link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/zTreeStyle/zTreeStyle.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
 <link href="{{ url_for('static', filename='css/department.css') }}" rel="stylesheet"> 
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid" style="height:45em;background-color:white">
-    <div>
-        <ul id="department_tree" class="ztree"></ul>
+    <div class="row">
+        <div class="col-md-3">
+            <ul id="department_tree" class="ztree"></ul>
+        </div>
+        <div clss="col-md-9">
+	</div>
     </div>
 </div>
 {% endblock %}
