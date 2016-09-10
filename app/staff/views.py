@@ -14,7 +14,7 @@ from app import db
 @login_required
 def department():
     user = current_user
-    return render_template("staff/department.html", user=user)
+    return render_template("staff/staff_list.html", user=user)
 
 
 @staff.route("/department/get_tree_json/", methods=["GET", "POST"])
