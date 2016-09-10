@@ -51,4 +51,20 @@ def rename_department():
         return json.dumps({"info": "success"})
     except:
         print traceback.format_exc()
-        return json.dumps({"info": "fail"})
+        return json.dumps({"info": u"修改失败"})
+
+
+@staff.route("/department/remove/", methods=["POST"])
+@login_required
+def remove_department():
+    try:
+        dep_id = request.form["dep_id"]
+        dep = Department.query.get(int(dep_id))
+        print 'u'*100
+        print dep.users
+        if dep.users:
+            return json.dumps({"info": u"此部门下有员工，不能删除"})
+        db.session.delete(dep)
+        return json.dumps({"info": "success"})
+    except:
+        return json.dumps({"info": u"删除失败"})

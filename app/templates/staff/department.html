@@ -38,6 +38,7 @@
         }, 
         callback:{
             onRename:rename_dep,
+	    onRemove:remove_dep
         }
     };
     //根节点不显示编辑和删除按钮
@@ -94,7 +95,25 @@
 		if(msg.info=="success"){
 		}
 		else{
-		    alert("修改失败！");
+		    alert(msg.info);
+		}
+	    }
+	})
+    }
+    //删除部门
+    function remove_dep(event, treeId, node){
+	var data_form = "dep_id=" + node.id;
+	$.ajax({
+            type: "POST",
+	    cache: "false",
+	    url: "/staff/department/remove/",
+	    dataType: "json",
+            data: data_form,
+	    success: function(msg){
+		if(msg.info=="success"){
+		}
+		else{
+		    alert(msg.info);
 		}
 	    }
 	})
