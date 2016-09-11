@@ -22,7 +22,7 @@ def department():
 @login_required
 def add_staff():
     user = current_user
-    if request.methods == "GET":
+    if request.method == "GET":
         form = staff_form()
         return render_template("staff/add_staff.html", user=user, form=form)
 
