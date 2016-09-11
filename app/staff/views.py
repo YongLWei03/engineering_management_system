@@ -6,6 +6,7 @@ import json
 import traceback
 
 from . import staff
+from .forms import staff_form
 from app.models import Department
 from app import db
 
@@ -15,6 +16,15 @@ from app import db
 def department():
     user = current_user
     return render_template("staff/staff_list.html", user=user)
+
+
+@staff.route("/add/", methods=["GET", "POST"])
+@login_required
+def add_staff():
+    user = current_user
+    if request.methods == "GET":
+        form = staff_form()
+        return render_template("staff/add_staff.html", user=user, form=form)
 
 
 @staff.route("/department/get_tree_json/", methods=["GET", "POST"])

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<link href="{{ url_for('static', filename='css/department.css') }}" rel="stylesheet"> 
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="height:45em;background-color:white">
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+			{% from "_formhelpers.html" import render_field %}
+			<form method=post action="#">
+			  <dl>
+				{{ render_field(form.username) }}
+				{{ render_field(form.email) }}
+				{{ render_field(form.password) }}
+				{{ render_field(form.confirm) }}
+			  </dl>
+			</form>
+        </div>
+    </div>
+</div>
+{% endblock %}
