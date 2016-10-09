@@ -2,23 +2,109 @@
 
 {% block styles %}
 {{ super() }}
-<link href="{{ url_for('static', filename='css/department.css') }}" rel="stylesheet"> 
+<link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid" style="height:45em;background-color:white">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-			{% from "_formhelpers.html" import render_field %}
 			<form method=post action="#">
-			  <dl>
-				{{ render_field(form.username) }}
-				{{ render_field(form.email) }}
-				{{ render_field(form.password) }}
-				{{ render_field(form.confirm) }}
-			  </dl>
+			    <div class="input-group">
+			      <span class="input-group-addon"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+                  {{ form.username(placeholder="账号", class="form-control") }}
+			    </div>
+			    <div class="input-group">
+			      <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                  {{ form.nickname(placeholder="姓名", class="form-control") }}
+			    </div>
+                  {{ form.dep_id(placeholder="部门id", class="form-control") }}
+			    <div class="input-group">
+			      <span class="input-group-addon" id="basic-addon1">@</span>
+                  {{ form.email(placeholder="邮箱", class="form-control") }}
+			    </div>
+			    <div class="input-group">
+			      <span class="input-group-addon" id="basic-addon1">@</span>
+                  {{ form.password(placeholder="密码", class="form-control") }}
+			    </div>
+			    <div class="input-group">
+			      <span class="input-group-addon" id="basic-addon1">@</span>
+                  {{ form.dep_name(placeholder="确认密码", class="form-control") }}
+			    </div>
+			    <div>
+                  {{ form.submit() }}
+			    </div>
+			    <div class="input-group">
+			      <span class="input-group-addon" id="basic-addon1">@</span>
+                  {{ form.dep_name(placeholder="部门", class="form-control", readonly=true, onclick="showMenu()") }}
+			    </div>
 			</form>
+        </div>
+        <div id="dep_content" style="display:none;position: absolute;">
+            <ul id="department_tree" class="ztree"></ul>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="//cdn.bootcss.com/zTree.v3/3.5.24/js/jquery.ztree.all.min.js"></script>
+    <script LANGUAGE="JavaScript">
+    var zTreeObj;
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true,
+            }
+        },
+        check: {
+            enable: true,
+            chkStyle: "radio",
+            radioType: "all"
+        },
+        callback:{
+            onClick: onClick,
+            onCheck: onCheck
+        }
+    };
+	function onClick(e, treeId, treeNode) {
+		var zTree = $.fn.zTree.getZTreeObj("department_tree");
+		zTree.checkNode(treeNode, !treeNode.checked, null, true);
+		return false;
+	}
+	function onCheck(e, treeId, treeNode) {
+		var zTree = $.fn.zTree.getZTreeObj("department_tree"),
+		node = zTree.getCheckedNodes(true),
+		dep_name = node[0].name,
+        dep_id = node[0].id;
+		$("#dep_name").attr("value", dep_name);
+		$("#dep_id").attr("value", dep_id);
+	}
+	function showMenu() {
+		var depObj = $("#dep_name");
+		var depOffset = $("#dep_name").offset();
+		$("#dep_content").css({left:depOffset.left + "px", top:depOffset.top + depObj.outerHeight() + "px"}).slideDown("fast");
+		$("body").bind("mousedown", onBodyDown);
+	}
+	function hideMenu() {
+		$("#dep_content").fadeOut("fast");
+		$("body").unbind("mousedown", onBodyDown);
+	}
+	function onBodyDown(event) {
+		if (!(event.target.id == "dep_name" || event.target.id == "dep_content" || $(event.target).parents("#dep_content").length>0)) {
+			hideMenu();
+		}
+	}
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/staff/department/get_tree_json/",
+            success: function(departments){
+                zTreeObj = $.fn.zTree.init($("#department_tree"), setting, departments);
+            }
+        })
+    });
+    </script>
 {% endblock %}

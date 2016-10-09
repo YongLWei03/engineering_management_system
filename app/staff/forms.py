@@ -15,4 +15,4 @@ class staff_form(Form):
         u"密码", [validators.DataRequired(),
                     validators.EqualTo("confirm", message=u"密码不匹配")])
     confirm = PasswordField(u"确认密码", [validators.DataRequired()])
-    submit = SubmitField(u"登录")
+    submit = SubmitField(u"确认")
