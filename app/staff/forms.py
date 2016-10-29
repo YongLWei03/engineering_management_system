@@ -7,7 +7,7 @@ from wtforms import StringField, PasswordField, SubmitField, \
 
 class staff_form(Form):
     username = StringField(u"账号", [validators.DataRequired()])
-    nickname = StringField(u"昵称", [validators.DataRequired()])
+    nickname = StringField(u"姓名", [validators.DataRequired()])
     dep_name = StringField(u"部门", [validators.DataRequired()])
     dep_id = HiddenField(u"部门id", [validators.DataRequired()])
     email = StringField(u"邮箱", [validators.Email()])
