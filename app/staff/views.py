@@ -6,8 +6,7 @@ import json
 import traceback
 
 from . import staff
-from .forms import staff_form
-from app.models import Department
+from app.models import Department, User
 from app import db
 
 
@@ -23,8 +22,17 @@ def department():
 def add_staff():
     user = current_user
     if request.method == "GET":
-        form = staff_form()
-        return render_template("staff/add_staff.html", user=user, form=form)
+        return render_template("staff/add_staff.html", user=user)
+    elif request.method == "POST":
+        new_user = User(
+            email=request.form.get("email"), name=request.form.get("name"),
+            mobile=request.form.get("mobile"),
+            employee_id=request.form.get("employee_id"),
+            gender=request.form.get("gender"),
+            position=request.form.get("position"),
+            birthday=request.form.get("birthday"), role_id=2)
+        db.add(new_user)
+        return json.dumps({'msg': 'success'})
 
 
 @staff.route("/department/get_tree_json/", methods=["GET", "POST"])

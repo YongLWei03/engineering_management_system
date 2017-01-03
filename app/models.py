@@ -31,7 +31,7 @@ class User(UserMixin, db.Model):
 
     @property
     def password(self):
-        raise AttributeError("密码是不可读的属性")
+        raise AttributeError(u"密码是不可读的属性")
 
     @password.setter
     def password(self, password):
