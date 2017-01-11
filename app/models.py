@@ -5,6 +5,7 @@ from . import login_manager
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy import func
 
 
 class Role(db.Model):
@@ -39,6 +40,16 @@ class User(UserMixin, db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    @classmethod
+    def get_count(cls):
+        query = db.session.query(func.count(cls.id)).first()
+        return int(query[0])
+
+    @classmethod
+    def get_all_user(cls):
+        query = db.session.query(cls).all()
+        return [i.__dict__ for i in query]
 
 
 class Department(db.Model):

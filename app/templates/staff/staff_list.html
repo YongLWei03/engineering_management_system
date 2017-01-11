@@ -4,7 +4,7 @@
 {{ super() }}
 <link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.css" rel="stylesheet">
-<link href="{{ url_for('static', filename='css/department.css') }}" rel="stylesheet"> 
+<link href="{{ url_for('static', filename='css/department.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -25,12 +25,10 @@
                                 <thead>
                                     <tr>
                                         <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
-                                        <th data-column-id="user_name" data-type="numeric" data-width="18%">用户名</th>
-                                        <th data-column-id="surname"  data-width="15%">用户姓名</th>
-                                        <th data-column-id="department_name" data-sortable="false" data-width="15%">所属部门</th>
+                                        <th data-column-id="user_name" data-type="numeric" data-width="18%">姓名</th>
+                                        <th data-column-id="surname"  data-width="15%">员工编号</th>
                                         <th data-column-id="email" data-sortable="false" data-width="20%">邮箱</th>
                                         <th data-column-id="sex" data-sortable="false"  data-width="8%">性别</th>
-                                        <th data-column-id="status" data-sortable="false" data-visible="false">状态</th>
                                         <th data-column-id="sender " data-sortable="false" data-formatter="link" data-width="13%">操作</th>
                                     </tr>
                                 </thead>
@@ -47,6 +45,7 @@
 
 {% block scripts %}
 {{ super() }}
+<!--
 <script src="//cdn.bootcss.com/zTree.v3/3.5.24/js/jquery.ztree.all.min.js"></script>
 <SCRIPT LANGUAGE="JavaScript">
     var zTreeObj;
@@ -63,10 +62,10 @@
 	    	enable: true,
 	    }
 	},
-        view:{  
-	    addHoverDom:addHoverDom,  
-	    removeHoverDom:removeHoverDom,  
-        }, 
+        view:{
+	    addHoverDom:addHoverDom,
+	    removeHoverDom:removeHoverDom,
+        },
         callback:{
             onRename:rename_dep,
 	    onRemove:remove_dep
@@ -160,6 +159,7 @@
         })
     });
     </SCRIPT>
+    -->
     <script src="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>
     <script>
     function test(){
@@ -170,18 +170,8 @@
                 cache: false
             },
             post: function() {
-                var sortOrder = $("#grid-data").bootgrid("getSortDictionary");
-                var sort_key,sort_order;
-                $.each(sortOrder, function (name, value) {
-                    sort_key   = name;
-                    sort_order = value;
-                });
-                return {
-                    "sort_key": sort_key,
-                    "sort_order": sort_order,
-                };
             },
-            url: "/admin/user_mgr_grid/",
+            url: "/staff/data/",
             selection: true,
             multiSelect: true,
             rowSelect: true,

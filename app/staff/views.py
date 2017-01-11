@@ -17,6 +17,26 @@ def department():
     return render_template("staff/staff_list.html", user=user)
 
 
+@staff.route("/data/", methods=['POST'])
+@login_required
+def staff_data():
+    r_json = {}
+
+    r_json["current"] = int(request.form["current"])
+    r_json["rowCount"] = int(request.form["rowCount"])
+
+    current = r_json["current"]
+    rowCount = r_json["rowCount"]
+
+    count = User.get_count()
+    all_staff = User.get_all_user()
+
+    r_json['rows'] = all_staff
+    r_json['total'] = count
+    print r_json
+    return json.dumps(r_json)
+
+
 @staff.route("/add/", methods=["GET", "POST"])
 @login_required
 def add_staff():
@@ -31,7 +51,7 @@ def add_staff():
             gender=request.form.get("gender"),
             position=request.form.get("position"),
             birthday=request.form.get("birthday"), role_id=2)
-        db.add(new_user)
+        db.session.add(new_user)
         return json.dumps({'msg': 'success'})
 
 
