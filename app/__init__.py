@@ -3,7 +3,7 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from flask_mysqldb import MySQL
+from flaskext.mysql import MySQL
 from flask_login import LoginManager
 from config import config
 
