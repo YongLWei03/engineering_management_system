@@ -9,10 +9,11 @@ from ..models import User
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user and user.verify_password(form.password.data):
-            login_user(user)
-            return redirect(request.args.get("next") or url_for("admin.index"))
-        flash("用户名或者密码错误")
+    email = request.form.get('email')
+    password = request.form.get('password')
+    user = User.query.filter_by(email=email).first()
+    if user and user.verify_password(password):
+        login_user(user)
+        return redirect(request.args.get("next") or url_for("admin.index"))
+    flash("用户名或者密码错误")
     return render_template("auth/login.html")
