@@ -56,6 +56,38 @@
             }
         });
 
+        //删除
+        $("#grid-data").bootgrid().on("loaded.rs.jquery.bootgrid", function() {
+            $("#grid-data").bootgrid().find(".glyphicon-trash").on("click", function(e) {
+                var paperId = $(this).attr("staff_id");
+                e.stopPropagation();
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    cache : false,
+                    headers: { "cache-control": "no-cache" },
+                    dataType: "json",
+                    url: ""+paperId,
+                    success: function(msg){
+                        if(msg.msg=="True"){
+                        }else{
+                            alert("操作失败，请联系管理员！");
+                        }
+                    }
+                });
+            })
+        });
+
+        //编辑
+        $("#grid-data").bootgrid().on("loaded.rs.jquery.bootgrid", function() {
+            $("#grid-data").bootgrid().find(".glyphicon-trash").on("click", function(e) {
+                var paperId = $(this).attr("staff_id");
+                e.stopPropagation();
+                e.preventDefault();
+                window.open(""+paperId;"_target");
+            })
+        });
+
     })
 
     </script>
