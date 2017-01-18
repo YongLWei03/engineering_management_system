@@ -10,176 +10,62 @@
 {% block content %}
 <div class="container-fluid" style="height:45em;background-color:white">
     <div class="row">
-	<!--
-        <div class="col-md-3 col-lg-3">
-            <ul id="department_tree" class="ztree"></ul>
-        </div>
-	-->
         <div class="col-md-9 col-lg-9">
-        <div role="tabpanel" class="tab-area tab-col2">
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="byTest">
-                    <div class="tab-wrap1">
-                        <div class="rqm-table2 com-drop">
-                            <table id="grid-data" class="table table-condensed table-hover">
-                                <thead>
-                                    <tr>
-                                        <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
-                                        <th data-column-id="user_name" data-type="numeric" data-width="18%">姓名</th>
-                                        <th data-column-id="surname"  data-width="15%">员工编号</th>
-                                        <th data-column-id="email" data-sortable="false" data-width="20%">邮箱</th>
-                                        <th data-column-id="sex" data-sortable="false"  data-width="8%">性别</th>
-                                        <th data-column-id="sender " data-sortable="false" data-formatter="link" data-width="13%">操作</th>
-                                    </tr>
-                                </thead>
-                            </table>
+            <div role="tabpanel" class="tab-area tab-col2">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="byTest">
+                        <div class="tab-wrap1">
+                            <div class="rqm-table2 com-drop">
+                                <table id="grid-data" class="table table-condensed table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
+                                            <th data-column-id="user_name" data-type="numeric" data-width="18%">姓名</th>
+                                            <th data-column-id="surname"  data-width="15%">员工编号</th>
+                                            <th data-column-id="email" data-sortable="false" data-width="20%">邮箱</th>
+                                            <th data-column-id="sex" data-sortable="false"  data-width="8%">性别</th>
+                                            <th data-column-id="sender " data-sortable="false" data-formatter="link" data-width="13%">操作</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-	</div>
+    	</div>
     </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
-<!--
-<script src="//cdn.bootcss.com/zTree.v3/3.5.24/js/jquery.ztree.all.min.js"></script>
-<SCRIPT LANGUAGE="JavaScript">
-    var zTreeObj;
-    var setting = {
-        edit:{
-            enable: true,
-	    showRemoveBtn: setBtn,
-	    showRenameBtn: setBtn,
-	    removeTitle: "删除",
-	    renameTitle: "编辑"
-        },
-	data: {
-	    simpleData: {
-	    	enable: true,
-	    }
-	},
-        view:{
-	    addHoverDom:addHoverDom,
-	    removeHoverDom:removeHoverDom,
-        },
-        callback:{
-            onRename:rename_dep,
-	    onRemove:remove_dep
-        }
-    };
-    //根节点不显示编辑和删除按钮
-    function setBtn(treeId, treeNode) {
-        return treeNode.pId;
-    }
-    //显示增加节点按钮
-    var count = 1
-    function addHoverDom(treeId, treeNode) {
-        var aObj = $("#" + treeNode.tId + "_a");
-        if ($("#addBtn_"+treeNode.id).length>0) return;
-        var editStr = "<span class='button add' id='addBtn_" +treeNode.id+ "' > </span>";
-        aObj.append(editStr);
-        var btn = $("#addBtn_"+treeNode.id);
-        if (btn) btn.bind("click", function(){
-	    var zTree = $.fn.zTree.getZTreeObj("department_tree");
-            var name = "新部门" + (count++);
-            add_dep(treeNode,name,zTree);
-	});
-    };
-    function removeHoverDom(treeId, treeNode) {
-        $("#addBtn_"+treeNode.id).unbind().remove();
-    };
-    //增加节点后台交互函数
-    function add_dep(node, name, tree){
-	var data_form = "current_id=" + node.id + "&name=" + name;
-	$.ajax({
-            type: "POST",
-	    cache: "false",
-	    url: "/staff/department/add/",
-	    dataType: "json",
-            data: data_form,
-	    success: function(msg){
-		if(msg.info=="success"){
-                    id = msg.id;
-	            tree.addNodes(node, {id:id, pId:node.id, name:name});
-		}
-		else{
-		    alert("添加失败！");
-		}
-	    }
-	})
-    }
-    //编辑部门名称
-    function rename_dep(event, treeId, node, isCancel){
-	var data_form = "dep_id=" + node.id + "&name=" + node.name;
-	$.ajax({
-            type: "POST",
-	    cache: "false",
-	    url: "/staff/department/rename/",
-	    dataType: "json",
-            data: data_form,
-	    success: function(msg){
-		if(msg.info=="success"){
-		}
-		else{
-		    alert(msg.info);
-		}
-	    }
-	})
-    }
-    //删除部门
-    function remove_dep(event, treeId, node){
-	var data_form = "dep_id=" + node.id;
-	$.ajax({
-            type: "POST",
-	    cache: "false",
-	    url: "/staff/department/remove/",
-	    dataType: "json",
-            data: data_form,
-	    success: function(msg){
-		if(msg.info=="success"){
-		}
-		else{
-		    alert(msg.info);
-		}
-	    }
-	})
-    }
-    $(document).ready(function(){
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: "/staff/department/get_tree_json/",
-            success: function(departments){
-                zTreeObj = $.fn.zTree.init($("#department_tree"), setting, departments);
-            }
-        })
-    });
-    </SCRIPT>
-    -->
     <script src="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>
     <script>
-    function test(){
+    $(document).ready(function(){
         $("#grid-data").bootgrid({
             ajax: true,
             ajaxSettings: {
                 method:"POST",
                 cache: false
             },
-            post: function() {
-            },
+            post: function() {},
             url: "/staff/data/",
             selection: true,
             multiSelect: true,
             rowSelect: true,
             navigation: 3,
             padding:1,
+            searchable:false,
+            formatters:{
+                "link":function(column, row) {
+                    return '<span class="glyphicon glyphicon-edit" staff_id="'+row.id+'" aria-hidden="true"></span>'+
+                    '<span class="glyphicon glyphicon-trash" staff_id="'+row.id+'" aria-hidden="true"></span>';
+                }
+            }
         });
-    }
-    test();
+
+    })
 
     </script>
 {% endblock %}
