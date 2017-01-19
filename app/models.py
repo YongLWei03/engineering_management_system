@@ -41,6 +41,21 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def to_dict(self):
+        if self.gender == 1:
+            gender = u'男'
+        elif self.gender == 0:
+            gender = u'女'
+        return {
+            'id': self.id,
+            'email': self.email,
+            'name': self.name,
+            'mobile': self.mobile,
+            'employee_id': self.employee_id,
+            'gender': gender,
+            'birthday': str(self.birthday)
+        }
+
     @classmethod
     def get_count(cls):
         query = db.session.query(func.count(cls.id)).first()
@@ -49,7 +64,7 @@ class User(UserMixin, db.Model):
     @classmethod
     def get_all_user(cls):
         query = db.session.query(cls).all()
-        return [i.__dict__ for i in query]
+        return [i.to_dict() for i in query]
 
 
 class Department(db.Model):
