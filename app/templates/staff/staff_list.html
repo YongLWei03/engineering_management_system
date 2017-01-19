@@ -61,15 +61,13 @@
                 e.stopPropagation();
                 e.preventDefault();
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     cache : false,
                     headers: { "cache-control": "no-cache" },
-                    dataType: "json",
-                    url: ""+paperId,
+                    url: "/staff/remove/"+paperId,
                     success: function(msg){
-                        if(msg.msg=="True"){
-                        }else{
-                            alert("操作失败，请联系管理员！");
+                        if(msg=="success"){
+                            $("#grid-data").bootgrid("reload");
                         }
                     }
                 });
