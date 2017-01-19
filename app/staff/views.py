@@ -22,18 +22,16 @@ def department():
 def staff_data():
     r_json = {}
 
-    r_json["current"] = int(request.form["current"])
-    r_json["rowCount"] = int(request.form["rowCount"])
-
-    current = r_json["current"]
-    rowCount = r_json["rowCount"]
+    current = int(request.form["current"])
+    rowCount = int(request.form["rowCount"])
+    r_json["current"] = current
+    r_json["rowCount"] = rowCount
 
     count = User.get_count()
-    all_staff = User.get_all_user()
+    all_staff = User.get_all_user()[(current-1)*rowCount: current*rowCount]
 
     r_json['rows'] = all_staff
     r_json['total'] = count
-    print r_json
     return json.dumps(r_json)
 
 
@@ -53,6 +51,13 @@ def add_staff():
             birthday=request.form.get("birthday"), role_id=2)
         db.session.add(new_user)
         return json.dumps({'msg': 'success'})
+
+
+@staff.route("/remove/<int:staff_id>", methods=['GET'])
+def remove_staff(staff_id):
+    staff = User.query.filter(id=staff_id).first()
+    db.session.delete(staff)
+    return 'success'
 
 
 @staff.route("/department/get_tree_json/", methods=["GET", "POST"])
