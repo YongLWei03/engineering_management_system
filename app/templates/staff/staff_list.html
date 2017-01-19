@@ -61,15 +61,13 @@
                 e.stopPropagation();
                 e.preventDefault();
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     cache : false,
                     headers: { "cache-control": "no-cache" },
-                    dataType: "json",
-                    url: ""+paperId,
+                    url: "/staff/remove/"+paperId,
                     success: function(msg){
-                        if(msg.msg=="True"){
-                        }else{
-                            alert("操作失败，请联系管理员！");
+                        if(msg=="success"){
+                            $("#grid-data").bootgrid("reload");
                         }
                     }
                 });
@@ -78,7 +76,7 @@
 
         //编辑
         $("#grid-data").bootgrid().on("loaded.rs.jquery.bootgrid", function() {
-            $("#grid-data").bootgrid().find(".glyphicon-trash").on("click", function(e) {
+            $("#grid-data").bootgrid().find(".glyphicon-edit").on("click", function(e) {
                 var paperId = $(this).attr("staff_id");
                 e.stopPropagation();
                 e.preventDefault();
