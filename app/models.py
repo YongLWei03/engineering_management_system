@@ -53,7 +53,8 @@ class User(UserMixin, db.Model):
             'mobile': self.mobile,
             'employee_id': self.employee_id,
             'gender': gender,
-            'birthday': str(self.birthday)
+            'birthday': str(self.birthday),
+            "remark": self.remark
         }
 
     @classmethod
