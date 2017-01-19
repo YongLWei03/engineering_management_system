@@ -53,7 +53,7 @@ def add_staff():
         return json.dumps({'msg': 'success'})
 
 
-@staff.route("/remove/<int: staff_id>", methods=['GET'])
+@staff.route("/remove/<int:staff_id>", methods=['GET'])
 def remove_staff(staff_id):
     staff = User.query.filter(id=staff_id).first()
     db.session.delete(staff)
