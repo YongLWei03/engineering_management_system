@@ -10,52 +10,47 @@
 <div class="container-fluid" style="height:45em;background-color:white">
     <div class="row">
         <div class="col-md-6 col-lg-6 col-md-offset-4">
-		<form id="add_staff_form">
+		    <form id="add_staff_form">
 		    <div class="form-group">
-			<label for="surname" class="control-label">姓名:</label>
-			<input type="text" name="name" id="surname" class="form-control">
+    			<label for="surname" class="control-label">姓名:</label>
+    			<input type="text" name="name" id="surname" class="form-control">
 		    </div>
 		    <div class="form-group">
-			<label for="password" class="control-label">员工编号:</label>
-			<input type="text" name="employee_id" id="password" class="form-control">
+    			<label for="password" class="control-label">员工编号:</label>
+    			<input type="text" name="employee_id" id="password" class="form-control">
 		    </div>
 		    <div class="form-group">
-			<label for="phone" class="control-label">手机:</label>
-			<input type="text" name="mobile" id="phone" class="form-control">
+    			<label for="phone" class="control-label">手机:</label>
+    			<input type="text" name="mobile" id="phone" class="form-control">
 		    </div>
 		    <div class="form-group">
-			<label for="email" class="control-label">邮箱:</label>
-			<input type="email" name="email" id="email" class="form-control">
+    			<label for="email" class="control-label">邮箱:</label>
+    			<input type="email" name="email" id="email" class="form-control">
 		    </div>
 		    <div class="form-group">
-			<label for="sex" class="control-label">性别:</label>
-			<span class="c">
-			<input name="gender" type="radio" id="male" value="1" checked style="width:inherit" />
-			男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input name="gender" type="radio" id="female" value="0" style="width:inherit" /> 女</span>
+    			<label for="sex" class="control-label">性别:</label>
+    			<span class="c">
+    			<input name="gender" type="radio" id="male" value="1" checked style="width:inherit" />
+    			男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input name="gender" type="radio" id="female" value="0" style="width:inherit" /> 女</span>
 		    </div>
 		    <div class="form-group">
-			<label for="position" class="control-label">职位:</label>
-			<input type="text" name="position" id="position" class="form-control">
+    			<label for="position" class="control-label">职位:</label>
+    			<input type="text" name="position" id="position" class="form-control">
 		    </div>
 		    <div class="form-group">
-			<label for="birthday" class="control-label">出生日期:</label>
-			<input type="text" name="birthday" id="birthday" class="form-control form_datetime">
+    			<label for="birthday" class="control-label">出生日期:</label>
+    			<input type="text" name="birthday" id="birthday" class="form-control form_datetime">
 		    </div>
 		    <div class="form-group">
-			<label for="notice" class="control-label">备注:</label>
-			<input type="text" name="remark" id="notice" class="form-control">
+    			<label for="notice" class="control-label">备注:</label>
+    			<input type="text" name="remark" id="notice" class="form-control">
 		    </div>
 		    <div class="form-group">
-			<input class="btn btn-primary" id="submit_add_staff" value="保存">
+	             <input class="btn btn-primary" id="submit_add_staff" value="保存">
 		    </div>
 		</form>
-        <!--
         </div>
-        <div id="dep_content" style="display:none;position: absolute;">
-            <ul id="department_tree" class="ztree"></ul>
-        </div>
-        -->
     </div>
 </div>
 {% endblock %}
@@ -63,67 +58,6 @@
 {% block scripts %}
     {{ super() }}
     <script src="{{ url_for('static', filename='js/laydate/laydate.js') }}"></script>
-
-    <!--
-    <script src="//cdn.bootcss.com/zTree.v3/3.5.24/js/jquery.ztree.all.min.js"></script>
-    <script LANGUAGE="JavaScript">
-    var zTreeObj;
-    var setting = {
-        data: {
-            simpleData: {
-                enable: true,
-            }
-        },
-        check: {
-            enable: true,
-            chkStyle: "radio",
-            radioType: "all"
-        },
-        callback:{
-            onClick: onClick,
-            onCheck: onCheck
-        }
-    };
-	function onClick(e, treeId, treeNode) {
-		var zTree = $.fn.zTree.getZTreeObj("department_tree");
-		zTree.checkNode(treeNode, !treeNode.checked, null, true);
-		return false;
-	}
-	function onCheck(e, treeId, treeNode) {
-		var zTree = $.fn.zTree.getZTreeObj("department_tree"),
-		node = zTree.getCheckedNodes(true),
-		dep_name = node[0].name,
-        dep_id = node[0].id;
-		$("#dep_name").attr("value", dep_name);
-		$("#dep_id").attr("value", dep_id);
-	}
-	function showMenu() {
-		var depObj = $("#dep_name");
-		var depOffset = $("#dep_name").offset();
-		$("#dep_content").css({left:depOffset.left + "px", top:depOffset.top + depObj.outerHeight() + "px"}).slideDown("fast");
-		$("body").bind("mousedown", onBodyDown);
-	}
-	function hideMenu() {
-		$("#dep_content").fadeOut("fast");
-		$("body").unbind("mousedown", onBodyDown);
-	}
-	function onBodyDown(event) {
-		if (!(event.target.id == "dep_name" || event.target.id == "dep_content" || $(event.target).parents("#dep_content").length>0)) {
-			hideMenu();
-		}
-	}
-    $(document).ready(function(){
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: "/staff/department/get_tree_json/",
-            success: function(departments){
-                zTreeObj = $.fn.zTree.init($("#department_tree"), setting, departments);
-            }
-        })
-    });
-    </script>
-    -->
     <script type="text/javascript">
         var birth = {
 		elem: "#birthday",

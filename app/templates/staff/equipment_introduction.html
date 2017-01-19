@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super }}
+<link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="height:45em;background-color:white">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-md-offset-4">
+            <div class=""></div>
+            <div class=""></div>
+            <div class=""></div>
+            <div class=""></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+    $(function() {
+
+    });
+    </script>
+{% endblock %}
