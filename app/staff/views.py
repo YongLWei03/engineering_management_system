@@ -55,7 +55,7 @@ def add_staff():
 
 @staff.route("/remove/<int:staff_id>", methods=['GET'])
 def remove_staff(staff_id):
-    staff = User.query.filter(id=staff_id).first()
+    staff = User.query.filter_by(id=staff_id).first()
     db.session.delete(staff)
     return 'success'
 
