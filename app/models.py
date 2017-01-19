@@ -44,7 +44,7 @@ class User(UserMixin, db.Model):
     def to_dict(self):
         if self.gender == 1:
             gender = u'男'
-        elif self.gender == 0:
+        else:
             gender = u'女'
         return {
             'id': self.id,
