@@ -76,7 +76,7 @@
 
         //编辑
         $("#grid-data").bootgrid().on("loaded.rs.jquery.bootgrid", function() {
-            $("#grid-data").bootgrid().find(".glyphicon-trash").on("click", function(e) {
+            $("#grid-data").bootgrid().find(".glyphicon-edit").on("click", function(e) {
                 var paperId = $(this).attr("staff_id");
                 e.stopPropagation();
                 e.preventDefault();
