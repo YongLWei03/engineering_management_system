@@ -8,6 +8,7 @@ label{width: 100px;}
 .form-control {display: inline-block;width: 300px;}
 .main-panel{margin: 40px auto;width: 405px;}
 .save-group{text-align: center;margin-top: 40px;}
+.save-group .btn-primary{width: 200px;}
 </style>
 {% endblock %}
 
@@ -61,7 +62,7 @@ label{width: 100px;}
                 class="form-control" value="{{ staff_info.remark }}">
     	    </div>
     	    <div class="form-group save-group">
-                 <input class="btn btn-primary" id="submit_add_staff" value="保存">
+                 <button class="btn btn-primary" id="submitBtn">保存</button>
     	    </div>
 	   </form>
     </div>
@@ -84,14 +85,14 @@ label{width: 100px;}
     <script type='text/javascript'>
         $(document).ready( function() {
             var staff_id = '{{ staff_info.id }}';
-            $('#submit_add_staff').click( function() {
+            $('#submitBtn').click( function() {
 				var dataForm = $('#add_staff_form').serialize();
 				$.ajax({
 					type: "POST",
 					cache : false,
 					headers: { "cache-control": "no-cache" },
 					dataType: "json",
-					url: "/staff/eidt/",
+					url: "/staff/edit/",
 					data: dataForm,
 					success: function(data){
 						if(data.msg=="success"){
