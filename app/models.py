@@ -48,13 +48,13 @@ class User(UserMixin, db.Model):
             gender = u'女'
         return {
             'id': self.id,
-            'email': self.email,
-            'name': self.name,
-            'mobile': self.mobile,
-            'employee_id': self.employee_id,
+            'email': self.email or '',
+            'name': self.name or '',
+            'mobile': self.mobile or '',
+            'employee_id': self.employee_id or '',
             'gender': gender,
-            'birthday': str(self.birthday),
-            "remark": self.remark
+            'birthday': str(self.birthday) or '',
+            "remark": self.remark or ''
         }
 
     @classmethod
