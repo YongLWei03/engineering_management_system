@@ -3,11 +3,11 @@
 {% block styles %}
 {{ super() }}
 <link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
-<link href="{{ url_for('static', filename='css/add_staff.css') }}" rel="stylesheet">
 <style>
 label{width: 100px;}
 .form-control {display: inline-block;width: 300px;}
 .main-panel{margin: 40px auto;width: 500px;}
+.btn-group{text-align: center;margin-top: 40px;}
 </style>
 {% endblock %}
 
@@ -59,7 +59,7 @@ label{width: 100px;}
     			<input type="text" name="remark" id="notice"
                 class="form-control" value="{{ staff_info.remark }}">
     	    </div>
-    	    <div class="form-group">
+    	    <div class="form-group btn-group">
                  <input class="btn btn-primary" id="submit_add_staff" value="保存">
     	    </div>
 	   </form>
