@@ -55,9 +55,6 @@ def add_staff():
             staff_id = int(staff_id)
             db.session.query(User).filter(
                 User.id == staff_id).update(update_dict)
-            print 'r'*100
-            print request.form
-            print dir(request.form)
         else:
             new_user = User(
                 email=request.form.get("email"), name=request.form.get("name"),
