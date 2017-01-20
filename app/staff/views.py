@@ -35,14 +35,15 @@ def staff_data():
     return json.dumps(r_json)
 
 
-@staff.route("/edit/<int:staff_id>", methods=["GET", "POST"])
+@staff.route("/edit/", methods=["GET", "POST"])
 @login_required
 def add_staff(staff_id):
     user = current_user
     if request.method == "GET":
         staff_info = None
+        staff_id = request.args.get('id')
         if staff_id:
-            staff = User.query.filter_by(id=staff_id).first()
+            staff = User.query.filter_by(id=int(staff_id)).first()
             staff_info = staff.to_dict()
         return render_template("staff/edit_staff.html", user=user,
                                staff_info=staff_info)
