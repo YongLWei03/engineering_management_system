@@ -48,14 +48,21 @@ def add_staff():
         return render_template("staff/edit_staff.html", user=user,
                                staff_info=staff_info)
     elif request.method == "POST":
-        new_user = User(
-            email=request.form.get("email"), name=request.form.get("name"),
-            mobile=request.form.get("mobile"),
-            employee_id=request.form.get("employee_id"),
-            gender=request.form.get("gender"),
-            position=request.form.get("position"),
-            birthday=request.form.get("birthday"), role_id=2)
-        db.session.add(new_user)
+        method = request.args.get('method')
+        if method == 'add':
+            new_user = User(
+                email=request.form.get("email"), name=request.form.get("name"),
+                mobile=request.form.get("mobile"),
+                employee_id=request.form.get("employee_id"),
+                gender=request.form.get("gender"),
+                position=request.form.get("position"),
+                birthday=request.form.get("birthday"), role_id=2)
+            db.session.add(new_user)
+        elif method == 'update':
+            staff_id = int(request.form.get('user_id'))
+            print 'r'*100
+            print request.form
+            print dir(request.form)
         return json.dumps({'msg': 'success'})
 
 
