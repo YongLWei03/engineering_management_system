@@ -15,6 +15,7 @@ label{width: 100px;}
 <div class="container-fluid" style="height:45em;background-color:white">
     <div class="main-panel">
 	    <form id="add_staff_form">
+            <input type="hidden" name="staff_id" value="{{ staff_info.id }}" />
     	    <div class="form-group">
     			<label for="surname" class="control-label">姓名:</label>
     			<input type="text" name="name" id="surname"
@@ -84,19 +85,13 @@ label{width: 100px;}
         $(document).ready( function() {
             var staff_id = '{{ staff_info.id }}';
             $('#submit_add_staff').click( function() {
-                var url;
-                if(staff_id==""){
-                    url = "/staff/eidt/?method=add";
-                }else {
-                    url = "/staff/edit/?method=update";
-                }
 				var dataForm = $('#add_staff_form').serialize();
 				$.ajax({
 					type: "POST",
 					cache : false,
 					headers: { "cache-control": "no-cache" },
 					dataType: "json",
-					url: url,
+					url: "/staff/eidt/",
 					data: dataForm,
 					success: function(data){
 						if(data.msg=="success"){
