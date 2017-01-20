@@ -59,7 +59,7 @@ def add_staff():
                 birthday=request.form.get("birthday"), role_id=2)
             db.session.add(new_user)
         elif method == 'update':
-            staff_id = int(request.form.get('user_id'))
+            staff_id = int(request.form.get('staff_id'))
             print 'r'*100
             print request.form
             print dir(request.form)
