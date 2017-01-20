@@ -37,7 +37,7 @@ def staff_data():
 
 @staff.route("/edit/", methods=["GET", "POST"])
 @login_required
-def add_staff(staff_id):
+def add_staff():
     user = current_user
     if request.method == "GET":
         staff_info = None
