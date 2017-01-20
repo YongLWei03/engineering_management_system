@@ -80,7 +80,7 @@
                 var paperId = $(this).attr("staff_id");
                 e.stopPropagation();
                 e.preventDefault();
-                window.open("/staff/edit/"+paperId,"_target");
+                window.open("/staff/edit/?id="+paperId,"_target");
             })
         });
 
