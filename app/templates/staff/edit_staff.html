@@ -86,9 +86,9 @@ label{width: 100px;}
             $('#submit_add_staff').click( function() {
                 var url;
                 if(staff_id==""){
-                    url = "/staff/add/?method=add";
+                    url = "/staff/eidt/?method=add";
                 }else {
-                    url = "/staff/add/?method=update";
+                    url = "/staff/edit/?method=update";
                 }
 				var dataForm = $('#add_staff_form').serialize();
 				$.ajax({
