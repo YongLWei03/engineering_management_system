@@ -53,7 +53,8 @@ class User(UserMixin, db.Model):
             'mobile': self.mobile,
             'employee_id': self.employee_id,
             'gender': gender,
-            'birthday': str(self.birthday)
+            'birthday': str(self.birthday),
+            "remark": self.remark
         }
 
     @classmethod
@@ -86,3 +87,16 @@ class Department(db.Model):
 def load_user(user_id):
     "加载用户的回调函数"
     return User.query.get(int(user_id))
+
+class Equipment(db.Model):
+    __tablename__ = 'equipments'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    picture =db.Column(db.String(64))
+    model = db.Column(db.String(64))
+    number = db.Column(db.Integer)
+    profile =db.Column(db.Text)
+    buy_date = db.Column(db.Date)
+    price = db.Column(db.Float)
+    vendor = db.Column(db.String(64))
+    status = db.Column(db.SmallInteger)
