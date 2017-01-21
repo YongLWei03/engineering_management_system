@@ -1,5 +1,7 @@
 # --*-- coding:utf-8 --*--
 
+import json
+
 from flask import render_template, request
 from flask import login_required, current_user
 
@@ -26,7 +28,8 @@ def equipment_data():
     r_json["rowCount"] = rowCount
 
     count = Equipment.get_count()
-    all_equipment = User.get_all_user()[(current-1)*rowCount: current*rowCount]
+    all_equipment = Equipment.get_all_user()[
+        (current-1)*rowCount: current*rowCount]
 
     r_json['rows'] = all_equipment
     r_json['total'] = count
