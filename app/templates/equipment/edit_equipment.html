@@ -74,7 +74,9 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
     <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script>
     $(function() {
-        $('input[name=purchasing-date]').datepicker({});
+        $('input[name=purchasing-date]').datepicker({
+            format: "yyyy-dd-mm"
+        });
     });
     </script>
 {% endblock %}
