@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block styles %}
-{{ super() }}
+{{ super }}
 <link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet">
 <style>
 label{width: 100px;}
 .form-control {display: inline-block;width: 300px;}
@@ -15,101 +16,65 @@ label{width: 100px;}
 {% block content %}
 <div class="container-fluid" style="height:45em;background-color:white">
     <div class="main-panel">
-	    <form id="add_staff_form">
-            <input type="hidden" name="staff_id" value="{{ staff_info.id }}" />
-    	    <div class="form-group">
-    			<label for="surname" class="control-label">姓名:</label>
-    			<input type="text" name="name" id="surname"
-                class="form-control" value="{{staff_info.name }}">
-    	    </div>
-    	    <div class="form-group">
-    			<label for="password" class="control-label">员工编号:</label>
-    			<input type="text" name="employee_id" id="password"
-                class="form-control" value="{{ staff_info.employee_id }}">
-    	    </div>
-    	    <div class="form-group">
-    			<label for="phone" class="control-label">手机:</label>
-    			<input type="text" name="mobile" id="phone"
-                class="form-control" value="{{ staff_info.mobile }}">
-    	    </div>
-    	    <div class="form-group">
-    			<label for="email" class="control-label">邮箱:</label>
-    			<input type="email" name="email" id="email"
-                class="form-control" value="{{ staff_info.email }}">
-    	    </div>
-    	    <div class="form-group">
-    			<label for="sex" class="control-label">性别:</label>
-    			<span class="c">
-        			<input name="gender" type="radio" id="male" value="1" checked style="width:inherit" />
-        			男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        			<input name="gender" type="radio" id="female" value="0" style="width:inherit" />
-                    女
-                </span>
-    	    </div>
-    	    <div class="form-group">
-    			<label for="position" class="control-label">职位:</label>
-    			<input type="text" name="position" id="position"
-                class="form-control" value="{{ staff_info.position }}">
-    	    </div>
-    	    <div class="form-group">
-    			<label for="birthday" class="control-label">出生日期:</label>
-    			<input type="text" name="birthday" id="birthday"
-                class="form-control form_datetime" value=""{{ staff_info.birthday }}>
-    	    </div>
-    	    <div class="form-group">
-    			<label for="notice" class="control-label">备注:</label>
-    			<input type="text" name="remark" id="notice"
-                class="form-control" value="{{ staff_info.remark }}">
-    	    </div>
-    	    <div class="form-group save-group">
-                 <button class="btn btn-primary" id="submitBtn">保存</button>
-    	    </div>
-	   </form>
+        <form id="add_staff_form" enctype="multipart/form-data" action="" method="post">
+            <input type="hidden" name="equipment_id" value="" />
+            <div class="form-group">
+                <label for="name" class="control-label">名称</label>
+                <input type="text" name="name" class="form-control" value="">
+            </div>
+            <div class="form-group">
+                <label for="surname" class="control-label">状态</label>
+                <select name="status">
+                    <option value="">正常</option>
+                    <option value="">禁用</option>
+                    <option value="">维修中</option>
+                    <option value="">借出</option>
+                    <option value="">报废</option>
+                </select>
+                <input type="text" name="name" class="form-control" value="">
+            </div>
+            <div class="form-group">
+                <label for="model" class="control-label">型号</label>
+                <input type="text" name="model" class="form-control" value="">
+            </div>
+            <div class="form-group">
+                <label for="number" class="control-label">编号</label>
+                <input type="text" name="number" class="form-control" value="">
+            </div>
+            <div class="form-group">
+                <label for="purchasing-date" class="control-label">购买日期</label>
+                <input type="text" name="purchasing-date" class="form-control" value="">
+            </div>
+            <div class="form-group">
+                <label for="price" class="control-label">价格</label>
+                <input type="text" name="price" class="form-control" value="">
+            </div>
+            <div class="form-group">
+                <label for="firm" class="control-label">厂商</label>
+                <input type="text" name="firm" class="form-control" value="">
+            </div>
+            <div class="form-group">
+                <label for="photo" class="control-label">照片</label>
+                <input type="file" name="photo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="introduction" class="control-label">简介</label>
+                <textarea name="introduction" class="form-control"></textarea>
+            </div>
+            <div class="form-group save-group">
+                 <button type="submit" class="btn btn-primary" id="submitBtn">保存</button>
+            </div>
+       </form>
     </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
     {{ super() }}
-    <script src="{{ url_for('static', filename='js/laydate/laydate.js') }}"></script>
-    <script type="text/javascript">
-        var birth = {
-		elem: "#birthday",
-		format: "YYYY-MM-DD",
-		min: "1900-01-01",
-		max: "2100-01-01",
-		istime: true
-	    };
-        laydate(birth)
-    </script>
-    <script type='text/javascript'>
-        $(document).ready( function() {
-            var staff_id = '{{ staff_info.id }}';
-            $('#submitBtn').click( function() {
-				var dataForm = $('#add_staff_form').serialize();
-				$.ajax({
-					type: "POST",
-					cache : false,
-					headers: { "cache-control": "no-cache" },
-					dataType: "json",
-					url: "/staff/edit/",
-					data: dataForm,
-					success: function(data){
-						if(data.msg=="success"){
-                            if(staff_id==""){
-                                alert("用户添加成功！");
-    							$("#add_staff_form")[0].reset();
-                            }else {
-                                alert("用户编辑成功！");
-                                window.close();
-                            }
-						}else{
-							alert("操作失败，请联系管理员！");
-						}
-					}
-				});
-            });
-
-        })
+    <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script>
+    $(function() {
+        $('input[name=purchasing-date]').datepicker({});
+    });
     </script>
 {% endblock %}
