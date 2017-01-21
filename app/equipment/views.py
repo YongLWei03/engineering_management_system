@@ -52,6 +52,7 @@ def add_equipment():
         equipment_id = request.form.get('equipment_id')
         if equipment_id:
             update_dict = request.form.to_dict()
+            equipment_info = update_dict
             update_dict.pop('equipment_id')
             equipment_id = int(equipment_id)
             db.session.query(Equipment).filter(
@@ -68,7 +69,9 @@ def add_equipment():
                 vendor=request.form.get("vendor"),
                 status=int(request.form.get('status')))
             db.session.add(new_equipment)
-        return json.dumps({'msg': 'success'})
+            equipment_info = new_equipment.to_dict()
+        return render_template("equipment/edit_equipment.html", user=user,
+                               equipment_info=equipment_info)
 
 
 @equipment.route("/remove/<int:equipment_id>", methods=['GET'])
