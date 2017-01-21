@@ -5,12 +5,12 @@ import json
 
 from flask import render_template, request
 from flask_login import login_required, current_user
+from flask import current_app
 from werkzeug.utils import secure_filename
 
 from . import equipment
 from app.models import Equipment
 from app import db
-from app.config import UPLOAD_FOLDER
 
 
 @equipment.route("/manage/", methods=["GET"])
@@ -64,7 +64,8 @@ def add_equipment():
             pic = request.files.get('picture')
             if pic:
                 filename = secure_filename(pic.filename)
-                pic.save(os.path.join(UPLOAD_FOLDER, filename))
+                pic.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
+                                      filename))
                 picture = "/static/{}".format(filename)
             else:
                 picture = ''
