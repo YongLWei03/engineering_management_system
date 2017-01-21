@@ -88,15 +88,49 @@ def load_user(user_id):
     "加载用户的回调函数"
     return User.query.get(int(user_id))
 
+
 class Equipment(db.Model):
     __tablename__ = 'equipments'
     id = db.Column(db.Integer, primary_key=True)
+    # 名称
     name = db.Column(db.String(64))
-    picture =db.Column(db.String(64))
+    # 图片
+    picture = db.Column(db.String(64))
+    # 型号
     model = db.Column(db.String(64))
+    # 编号
     number = db.Column(db.Integer)
-    profile =db.Column(db.Text)
+    # 简介
+    profile = db.Column(db.Text)
+    # 购买日期
     buy_date = db.Column(db.Date)
+    # 价格
     price = db.Column(db.Float)
+    # 厂商
     vendor = db.Column(db.String(64))
+    # 状态，1正常，2禁用，3维修中，4借出，5报废
     status = db.Column(db.SmallInteger)
+
+    def to_dcit(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'picture': self.picture,
+            'model': self.model,
+            'number': self.number,
+            'profile': self.profile,
+            'buy_date': self.buy_date,
+            'price': self.price,
+            'vendor': self.vendor,
+            'status': self.status
+        }
+
+    @classmethod
+    def get_count(cls):
+        query = db.session.query(func.count(cls.id)).first()
+        return int(query[0])
+
+    @classmethod
+    def get_all_equipment(cls):
+        query = db.session.query(cls).all()
+        return [i.to_dict() for i in query]

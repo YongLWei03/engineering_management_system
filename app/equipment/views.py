@@ -41,30 +41,32 @@ def equipment_data():
 def add_equipment():
     user = current_user
     if request.method == "GET":
-        """
         equipment_info = None
         equipment_id = request.args.get('id')
         if equipment_id:
-            equipment = User.query.filter_by(id=int(equipment_id)).first()
+            equipment = Equipment.query.filter_by(id=int(equipment_id)).first()
             equipment_info = equipment.to_dict()
-        """
-        return render_template("equipment/edit_equipment.html", user=user)
+        return render_template("equipment/edit_equipment.html", user=user,
+                               equipment_info=equipment_info)
     elif request.method == "POST":
         equipment_id = request.form.get('equipment_id')
         if equipment_id:
             update_dict = request.form.to_dict()
             update_dict.pop('equipment_id')
             equipment_id = int(equipment_id)
-            db.session.query(User).filter(
-                User.id == equipment_id).update(update_dict)
+            db.session.query(Equipment).filter(
+                Equipment.id == equipment_id).update(update_dict)
         else:
-            new_user = User(
-                email=request.form.get("email"), name=request.form.get("name"),
-                mobile=request.form.get("mobile"),
-                employee_id=request.form.get("employee_id"),
-                gender=request.form.get("gender"),
-                position=request.form.get("position"),
-                birthday=request.form.get("birthday"), role_id=2)
+            new_user = Equipment(
+                name=request.form.get("name"),
+                picture=request.form.get("picture"),
+                model=request.form.get("model"),
+                number=request.form.get("number"),
+                profile=request.form.get("profile"),
+                buy_date=request.form.get("buy_date"),
+                price=request.form.get('price'),
+                vendor=request.form.get("vendor"),
+                status=request.form.get('status'))
             db.session.add(new_user)
         return json.dumps({'msg': 'success'})
 
