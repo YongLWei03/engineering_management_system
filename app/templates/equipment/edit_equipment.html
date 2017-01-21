@@ -11,6 +11,7 @@ label{width: 100px;}
 .save-group{text-align: center;margin-top: 40px;}
 .save-group .btn-primary{width: 200px;}
 textarea{vertical-align: middle;height: 100px;overflow: scroll;}
+input[type=file]{opacity: 0;filter: opacity(alpha=0);}
 </style>
 {% endblock %}
 
@@ -55,7 +56,10 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
             </div>
             <div class="form-group">
                 <label for="picture" class="control-label">照片</label>
-                <input type="file" name="picture" class="form-control" />
+                <a class="form-control">
+                    <input type="file" name="picture" class="form-control" />
+                </a>
+
             </div>
             <div class="form-group">
                 <label for="profile" class="control-label">简介</label>
