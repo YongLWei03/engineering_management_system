@@ -61,7 +61,7 @@ def add_equipment():
             db.session.query(Equipment).filter(
                 Equipment.id == equipment_id).update(update_dict)
         else:
-            pic = request.file.get('picture')
+            pic = request.files.get('picture')
             if pic:
                 filename = secure_filename(pic.filename)
                 file.save(os.path.join(config['UPLOAD_FOLDER'], filename))
