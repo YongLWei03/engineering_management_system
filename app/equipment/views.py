@@ -1,13 +1,16 @@
 # --*-- coding:utf-8 --*--
 
+import os
 import json
 
 from flask import render_template, request
 from flask_login import login_required, current_user
+from werkzeug.utils import secure_filename
 
 from . import equipment
 from app.models import Equipment
 from app import db
+from app import config
 
 
 @equipment.route("/manage/", methods=["GET"])
@@ -58,9 +61,16 @@ def add_equipment():
             db.session.query(Equipment).filter(
                 Equipment.id == equipment_id).update(update_dict)
         else:
+            pic = request.file.get('picture')
+            if pic:
+                filename = secure_filename(pic.filename)
+                file.save(os.path.join(config['UPLOAD_FOLDER'], filename))
+                picture = "/static/{}".format(filename)
+            else:
+                picture = ''
             new_equipment = Equipment(
                 name=request.form.get("name"),
-                picture=request.form.get("picture"),
+                picture=picture,
                 model=request.form.get("model"),
                 number=int(request.form.get("number")),
                 profile=request.form.get("profile"),
