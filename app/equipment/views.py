@@ -3,7 +3,7 @@
 import json
 
 from flask import render_template, request
-from flask import login_required, current_user
+from flask_login import login_required, current_user
 
 from . import equipment
 from app.models import Equipment
