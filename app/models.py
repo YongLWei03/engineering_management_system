@@ -111,7 +111,7 @@ class Equipment(db.Model):
     # 状态，1正常，2禁用，3维修中，4借出，5报废
     status = db.Column(db.SmallInteger)
 
-    def to_dcit(self):
+    def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
