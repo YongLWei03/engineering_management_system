@@ -2,6 +2,8 @@
 
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
+ROOT_DIR = os.path.dirname(basedir)
+UPLOAD_FOLDER = "%s/app/static/" % ROOT_DIR
 
 
 class Config:
