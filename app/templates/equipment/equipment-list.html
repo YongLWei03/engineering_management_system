@@ -51,14 +51,14 @@
                 cache: false
             },
             post: function() {},
-            url: "/staff/data/",
+            url: "/equipment/data/",
             selection: false,
             navigation: 2,
             padding:1,
             formatters:{
                 "link":function(column, row) {
-                    return '<span class="glyphicon glyphicon-edit" staff_id="'+row.id+'" aria-hidden="true"></span>'+
-                    '<span class="glyphicon glyphicon-trash" staff_id="'+row.id+'" aria-hidden="true"></span>';
+                    return '<span class="glyphicon glyphicon-edit" equipment_id="'+row.id+'" aria-hidden="true"></span>'+
+                    '<span class="glyphicon glyphicon-trash" equipment_id="'+row.id+'" aria-hidden="true"></span>';
                 }
             }
         });
@@ -66,14 +66,14 @@
         //删除
         $("#grid-data").bootgrid().on("loaded.rs.jquery.bootgrid", function() {
             $("#grid-data").bootgrid().find(".glyphicon-trash").on("click", function(e) {
-                var paperId = $(this).attr("staff_id");
+                var paperId = $(this).attr("equipment_id");
                 e.stopPropagation();
                 e.preventDefault();
                 $.ajax({
                     type: "GET",
                     cache : false,
                     headers: { "cache-control": "no-cache" },
-                    url: "/staff/remove/"+paperId,
+                    url: "/equipment/remove/"+paperId,
                     success: function(msg){
                         if(msg=="success"){
                             $("#grid-data").bootgrid("reload");
@@ -86,10 +86,10 @@
         //编辑
         $("#grid-data").bootgrid().on("loaded.rs.jquery.bootgrid", function() {
             $("#grid-data").bootgrid().find(".glyphicon-edit").on("click", function(e) {
-                var paperId = $(this).attr("staff_id");
+                var paperId = $(this).attr("equipment_id");
                 e.stopPropagation();
                 e.preventDefault();
-                window.open("/staff/edit/?id="+paperId,"_target");
+                window.open("/equipment/edit/?id="+paperId,"_target");
             })
         });
 
