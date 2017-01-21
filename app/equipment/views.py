@@ -57,17 +57,17 @@ def add_equipment():
             db.session.query(Equipment).filter(
                 Equipment.id == equipment_id).update(update_dict)
         else:
-            new_user = Equipment(
+            new_equipment = Equipment(
                 name=request.form.get("name"),
                 picture=request.form.get("picture"),
                 model=request.form.get("model"),
-                number=request.form.get("number"),
+                number=int(request.form.get("number")),
                 profile=request.form.get("profile"),
                 buy_date=request.form.get("buy_date"),
-                price=request.form.get('price'),
+                price=float(request.form.get('price')),
                 vendor=request.form.get("vendor"),
-                status=request.form.get('status'))
-            db.session.add(new_user)
+                status=int(request.form.get('status')))
+            db.session.add(new_equipment)
         return json.dumps({'msg': 'success'})
 
 
