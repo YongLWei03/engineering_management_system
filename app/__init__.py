@@ -31,5 +31,7 @@ def create_app(config_name):
     app.register_blueprint(admin_blueprint, url_prefix="/admin")
     from staff import staff as staff_blueprint
     app.register_blueprint(staff_blueprint, url_prefix="/staff")
+    from equipment import equipment as equipment_blueprint
+    app.register_blueprint(equipment_blueprint, url_prefix="/equipment")
 
     return app

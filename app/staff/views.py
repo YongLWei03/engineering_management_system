@@ -50,9 +50,11 @@ def add_staff():
     elif request.method == "POST":
         staff_id = request.form.get('staff_id')
         if staff_id:
-            print 'r'*100
-            print request.form
-            print dir(request.form)
+            update_dict = request.form.to_dict()
+            update_dict.pop('staff_id')
+            staff_id = int(staff_id)
+            db.session.query(User).filter(
+                User.id == staff_id).update(update_dict)
         else:
             new_user = User(
                 email=request.form.get("email"), name=request.form.get("name"),
