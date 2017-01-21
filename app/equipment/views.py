@@ -41,13 +41,14 @@ def equipment_data():
 def add_equipment():
     user = current_user
     if request.method == "GET":
+        """
         equipment_info = None
         equipment_id = request.args.get('id')
         if equipment_id:
             equipment = User.query.filter_by(id=int(equipment_id)).first()
             equipment_info = equipment.to_dict()
-        return render_template("equipment/edit_equipment.html", user=user,
-                               equipment_info=equipment_info)
+        """
+        return render_template("equipment/edit_equipment.html", user=user)
     elif request.method == "POST":
         equipment_id = request.form.get('equipment_id')
         if equipment_id:
