@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 from . import equipment
 from app.models import Equipment
 from app import db
-from app import config
+from app.config import UPLOAD_FOLDER
 
 
 @equipment.route("/manage/", methods=["GET"])
@@ -64,7 +64,7 @@ def add_equipment():
             pic = request.files.get('picture')
             if pic:
                 filename = secure_filename(pic.filename)
-                pic.save(os.path.join(config['UPLOAD_FOLDER'], filename))
+                pic.save(os.path.join(UPLOAD_FOLDER, filename))
                 picture = "/static/{}".format(filename)
             else:
                 picture = ''
