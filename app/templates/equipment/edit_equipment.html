@@ -20,40 +20,40 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
 <div class="container-fluid" style="height:45em;background-color:white">
     <div class="main-panel">
         <form id="equipForm" enctype="multipart/form-data" action="/equipment/edit/" method="post">
-            <input type="hidden" name="id" value="" />
+            <input type="hidden" name="equipment_id" value="{{ equipment_info.id }}" />
             <div class="form-group">
                 <label for="name" class="control-label">名称</label>
-                <input type="text" name="name" class="form-control" value="">
+                <input type="text" name="name" class="form-control" value="{{ equipment_info.name }}">
             </div>
             <div class="form-group">
                 <label for="surname" class="control-label">状态</label>
                 <select name="status">
-                    <option value="0">正常</option>
-                    <option value="1">禁用</option>
-                    <option value="2">维修中</option>
-                    <option value="3">借出</option>
-                    <option value="4">报废</option>
+                    <option value="0" {% if equipment_info.status=="0" %}selected{% endif %}>正常</option>
+                    <option value="1" {% if equipment_info.status=="1" %}selected{% endif %}>禁用</option>
+                    <option value="2" {% if equipment_info.status=="2" %}selected{% endif %}>维修中</option>
+                    <option value="3" {% if equipment_info.status=="3" %}selected{% endif %}>借出</option>
+                    <option value="4" {% if equipment_info.status=="4" %}selected{% endif %}>报废</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="model" class="control-label">型号</label>
-                <input type="text" name="model" class="form-control" value="">
+                <input type="text" name="model" class="form-control" value="{{ equipment_info.model }}">
             </div>
             <div class="form-group">
                 <label for="number" class="control-label">编号</label>
-                <input type="text" name="number" class="form-control" value="">
+                <input type="text" name="number" class="form-control" value="{{ equipment_info.number }}">
             </div>
             <div class="form-group">
                 <label for="buy-date" class="control-label">购买日期</label>
-                <input type="text" name="buy-date" class="form-control" value="">
+                <input type="text" name="buy-date" class="form-control" value="{{ equipment_info.buy-date }}">
             </div>
             <div class="form-group">
                 <label for="price" class="control-label">价格</label>
-                <input type="text" name="price" class="form-control" value="">
+                <input type="text" name="price" class="form-control" value="{{ equipment_info.price }}">
             </div>
             <div class="form-group">
                 <label for="vender" class="control-label">厂商</label>
-                <input type="text" name="vender" class="form-control" value="">
+                <input type="text" name="vender" class="form-control" value="{{ equipment_info.vender }}">
             </div>
             <div class="form-group">
                 <label for="picture" class="control-label">照片</label>
@@ -61,11 +61,15 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
                     <input type="file" name="picture" />
                     上传照片
                 </a>
-
+                <div>
+                    {% if equipment_info.picture %}
+                    <img src="{{ equipment_info.picture }}" style="width:150px;height:200px;" />
+                    {% endif %}
+                </div>
             </div>
             <div class="form-group">
                 <label for="profile" class="control-label">简介</label>
-                <textarea name="profile" class="form-control"></textarea>
+                <textarea name="profile" class="form-control">{{ equipment_info.profile }}</textarea>
             </div>
             <div class="form-group save-group">
                  <button type="submit" class="btn btn-primary" id="submitBtn">保存</button>
