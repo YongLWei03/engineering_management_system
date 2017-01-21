@@ -42,24 +42,24 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
                 <input type="text" name="number" class="form-control" value="">
             </div>
             <div class="form-group">
-                <label for="purchasing-date" class="control-label">购买日期</label>
-                <input type="text" name="purchasing-date" class="form-control" value="">
+                <label for="buy-date" class="control-label">购买日期</label>
+                <input type="text" name="buy-date" class="form-control" value="">
             </div>
             <div class="form-group">
                 <label for="price" class="control-label">价格</label>
                 <input type="text" name="price" class="form-control" value="">
             </div>
             <div class="form-group">
-                <label for="firm" class="control-label">厂商</label>
-                <input type="text" name="firm" class="form-control" value="">
+                <label for="vender" class="control-label">厂商</label>
+                <input type="text" name="vender" class="form-control" value="">
             </div>
             <div class="form-group">
-                <label for="photo" class="control-label">照片</label>
-                <input type="file" name="photo" class="form-control" />
+                <label for="picture" class="control-label">照片</label>
+                <input type="file" name="picture" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="introduction" class="control-label">简介</label>
-                <textarea name="introduction" class="form-control"></textarea>
+                <label for="profile" class="control-label">简介</label>
+                <textarea name="profile" class="form-control"></textarea>
             </div>
             <div class="form-group save-group">
                  <button type="submit" class="btn btn-primary" id="submitBtn">保存</button>
@@ -74,7 +74,7 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
     <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script>
     $(function() {
-        $('input[name=purchasing-date]').datepicker({
+        $('input[name=buy-date]').datepicker({
             format: "yyyy-dd-mm"
         });
     });
