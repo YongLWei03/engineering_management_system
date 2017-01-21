@@ -12,7 +12,7 @@ from app import db
 
 @equipment.route("/manage/", methods=["GET"])
 @login_required
-def equipment():
+def equipment_manage():
     user = current_user
     return render_template("equipment/equipment_list.html", user=user)
 
