@@ -44,8 +44,8 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
                 <input type="text" name="number" class="form-control" value="{{ equipment_info.number }}">
             </div>
             <div class="form-group">
-                <label for="buy-date" class="control-label">购买日期</label>
-                <input type="text" name="buy-date" class="form-control" value="{{ equipment_info.buy-date }}">
+                <label for="buy_date" class="control-label">购买日期</label>
+                <input type="text" name="buy_date" class="form-control" value="{{ equipment_info.buy_date }}">
             </div>
             <div class="form-group">
                 <label for="price" class="control-label">价格</label>
@@ -84,7 +84,7 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
     <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script>
     $(function() {
-        $('input[name=buy-date]').datepicker({
+        $('input[name=buy_date]').datepicker({
             format: "yyyy-dd-mm"
         });
     });
