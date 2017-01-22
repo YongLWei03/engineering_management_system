@@ -31,11 +31,12 @@ def equipment_data():
     r_json["rowCount"] = rowCount
 
     count = Equipment.get_count()
-    all_equipment = Equipment.get_all_user()[
+    all_equipment = Equipment.get_all_equipment()[
         (current-1)*rowCount: current*rowCount]
 
     r_json['rows'] = all_equipment
     r_json['total'] = count
+    print r_json
     return json.dumps(r_json)
 
 
@@ -69,6 +70,8 @@ def add_equipment():
                 picture = "/static/upload/{}".format(filename)
             else:
                 picture = ''
+            print 'r'*100
+            print request.form
             new_equipment = Equipment(
                 name=request.form.get("name"),
                 picture=picture,
