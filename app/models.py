@@ -119,7 +119,7 @@ class Equipment(db.Model):
             'model': self.model,
             'number': self.number,
             'profile': self.profile,
-            'buy_date': self.buy_date,
+            'buy_date': str(self.buy_date),
             'price': self.price,
             'vendor': self.vendor,
             'status': self.status
