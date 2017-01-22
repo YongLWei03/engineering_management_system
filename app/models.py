@@ -112,6 +112,13 @@ class Equipment(db.Model):
     status = db.Column(db.SmallInteger)
 
     def to_dict(self):
+        status_dict = {
+            1: u'正常',
+            2: u'禁用',
+            3: u'维修中',
+            4: u'借出',
+            5: u'报废'
+        }
         return {
             'id': self.id,
             'name': self.name,
@@ -122,7 +129,7 @@ class Equipment(db.Model):
             'buy_date': str(self.buy_date),
             'price': self.price,
             'vendor': self.vendor,
-            'status': self.status
+            'status': status_dict.get(self.status)
         }
 
     @classmethod
