@@ -70,6 +70,8 @@ def add_equipment():
                 picture = "/static/upload/{}".format(filename)
             else:
                 picture = ''
+            print 'r'*100
+            print request.form
             new_equipment = Equipment(
                 name=request.form.get("name"),
                 picture=picture,

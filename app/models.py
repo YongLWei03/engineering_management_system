@@ -119,6 +119,7 @@ class Equipment(db.Model):
             4: u'借出',
             5: u'报废'
         }
+
         return {
             'id': self.id,
             'name': self.name,
