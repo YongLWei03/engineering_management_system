@@ -10,7 +10,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     ROOT_DIR = os.path.dirname(basedir)
-    UPLOAD_FOLDER = "%s/app/static/" % ROOT_DIR
+    UPLOAD_FOLDER = "%s/engineering_management_system/app/static/upload/" % ROOT_DIR
 
     @staticmethod
     def init_app(app):
