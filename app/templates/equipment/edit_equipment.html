@@ -17,7 +17,7 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid" style="height:45em;background-color:white">
+<div class="container-fluid" style="background-color:white">
     <div class="main-panel">
         <form id="equipForm" enctype="multipart/form-data" action="/equipment/edit/" method="post">
             <input type="hidden" name="equipment_id" value="{{ equipment_info.id }}" />
@@ -61,7 +61,8 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
                     <input type="file" name="picture" />
                     上传照片
                 </a>
-                <div>
+                <label>
+                <div style="margin: 10px 100px 0;border: 1px solid #ccc;">
                     {% if equipment_info.picture %}
                     <img src="{{ equipment_info.picture }}" style="width:150px;height:200px;" />
                     {% endif %}
