@@ -130,7 +130,8 @@ class Equipment(db.Model):
             'buy_date': str(self.buy_date),
             'price': self.price,
             'vendor': self.vendor,
-            'status': status_dict.get(self.status)
+            'status': self.status,
+            'status_txt': status_dict.get(self.status)
         }
 
     @classmethod

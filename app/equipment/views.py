@@ -84,12 +84,14 @@ def add_equipment():
                 status=int(request.form.get('status')))
             db.session.add(new_equipment)
             equipment_info = new_equipment.to_dict()
+            print 'e'*100
+            print equipment_info
         return render_template("equipment/edit_equipment.html", user=user,
                                equipment_info=equipment_info)
 
 
 @equipment.route("/remove/<int:equipment_id>", methods=['GET'])
 def remove_equipment(equipment_id):
-    equipment = User.query.filter_by(id=equipment_id).first()
+    equipment = Equipment.query.filter_by(id=equipment_id).first()
     db.session.delete(equipment)
     return 'success'
