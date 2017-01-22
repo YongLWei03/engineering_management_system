@@ -68,7 +68,7 @@ def add_equipment():
                 print current_app.config['UPLOAD_FOLDER']
                 pic.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                                       filename))
-                picture = "/static/{}".format(filename)
+                picture = "/static/upload/{}".format(filename)
             else:
                 picture = ''
             new_equipment = Equipment(
