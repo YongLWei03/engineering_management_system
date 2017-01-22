@@ -36,6 +36,7 @@ def equipment_data():
 
     r_json['rows'] = all_equipment
     r_json['total'] = count
+    print r_json
     return json.dumps(r_json)
 
 
