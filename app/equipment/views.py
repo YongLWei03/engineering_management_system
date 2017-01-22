@@ -64,6 +64,8 @@ def add_equipment():
             pic = request.files.get('picture')
             if pic:
                 filename = secure_filename(pic.filename)
+                print 'p'*100
+                print current_app.config['UPLOAD_FOLDER']
                 pic.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                                       filename))
                 picture = "/static/{}".format(filename)
