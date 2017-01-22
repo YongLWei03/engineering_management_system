@@ -13,7 +13,6 @@
 
 {% block content %}
 <form id="example-form" action="#">
-    <div>
         <h3>Account</h3>
         <section>
             <label for="userName">User name *</label>
@@ -48,7 +47,6 @@
         <section>
             <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
         </section>
-    </div>
 </form>
 {% endblock %}
 
@@ -66,7 +64,7 @@ $(document).ready(function(){
             }
         }
     });
-    form.children("div").steps({
+    form.steps({
         headerTag: "h3",
         bodyTag: "section",
         transitionEffect: "slideLeft",
