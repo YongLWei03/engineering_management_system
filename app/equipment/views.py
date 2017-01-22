@@ -31,7 +31,7 @@ def equipment_data():
     r_json["rowCount"] = rowCount
 
     count = Equipment.get_count()
-    all_equipment = Equipment.get_all_user()[
+    all_equipment = Equipment.get_all_equipment()[
         (current-1)*rowCount: current*rowCount]
 
     r_json['rows'] = all_equipment
