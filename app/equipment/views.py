@@ -9,7 +9,7 @@ from flask import current_app
 from werkzeug.utils import secure_filename
 
 from . import equipment
-from app.models import Equipment
+from app.models import Equipment, User
 from app import db
 
 
@@ -97,3 +97,11 @@ def remove_equipment(equipment_id):
 def borrow():
     user = current_user
     return render_template("equipment/borrow.html", user=user)
+
+
+@equipment.route("/borrow/select_staff/", methods=["POST"])
+def borroe_select_staff():
+    name_key = request.form.get('name_key')
+    staffs = User.query().filter(User.name.like('%'+name_key+'%')).all()
+    staffs_dict = [i.to_dict() for i in staffs]
+    return json.dumps(staffs_dict)
