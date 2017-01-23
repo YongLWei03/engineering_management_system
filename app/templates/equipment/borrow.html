@@ -5,11 +5,17 @@
 <link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.css" rel="stylesheet">
 <link href="../../static/css/jquery-steps.css" rel="stylesheet">
-<link href="http://cdn.bootcss.com/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.css" rel="stylesheet">
 <style>
 .main-panel{height:45em;background-color:#fff;}
 .tab-pane{width: 80%;margin: 50px auto 30px;}
-.form-control{width: 200px;}
+.form-control{width: 200px;display: inline-block;}
+
+/*bootgrid*/
+#grid-data tr{height: 40px;}
+#grid-data tr > td{padding: 10px 5px 10px;}
+#grid-data .glyphicon{margin-right:10px;cursor: pointer;}
+#grid-data .glyphicon:hover{color: #0c6cc0;}
 </style>
 {% endblock %}
 
@@ -17,10 +23,22 @@
 <div id="equipmentBorrow">
     <h3>选择设备</h3>
     <section>
-        <div class="">
-            <span>借出人员</span>
-            <input type="text" name="key_name" class="form-control" />
+        <div>
+            <span>请输入姓名搜索</span>
+            <input type="text" name="search_name" class="form-control" placeholder="请输入姓名搜索" />
         </div>
+        <table id="grid-data" class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
+                    <th data-column-id="name" data-type="numeric" data-width="18%">姓名</th>
+                    <th data-column-id="employee_id"  data-width="15%">员工编号</th>
+                    <th data-column-id="email" data-sortable="false" data-width="20%">邮箱</th>
+                    <th data-column-id="gender" data-sortable="false"  data-width="8%">性别</th>
+                    <th data-column-id="sender" data-sortable="false" data-formatter="link" data-width="13%">操作</th>
+                </tr>
+            </thead>
+        </table>
     </section>
     <h3>选择人员</h3>
     <section>
@@ -36,7 +54,7 @@
 {% block scripts %}
 {{ super() }}
 <script src="http://cdn.bootcss.com/jquery-steps/1.1.0/jquery.steps.min.js"></script>
-<script src="http://cdn.bootcss.com/jquery-autocomplete/1.0.7/jquery.auto-complete.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>
 <script>
 $(document).ready(function(){
     $("#equipmentBorrow").steps({
@@ -46,25 +64,25 @@ $(document).ready(function(){
         autoFocus: true
     });
 
-    $('input[name=key_name]').autoComplete({
-        minChars: 1,
-        source: function(term, response){
-            $.ajax({
-                type: "POST",
-                cache : false,
-                headers: { "cache-control": "no-cache" },
-                url: "/equipment/borrow/select_staff/",
-                data: "name_key="+term,
-                success: function(data){
-                    response(data);
-                }
-            });
-            // $.getJSON('/some/ajax/url/', { q: term }, function(data){ response(data); });
+    $("#grid-data").bootgrid({
+        ajax: true,
+        ajaxSettings: {
+            method:"POST",
+            cache: false
         },
-        onSelect: function(e, term, item){
-            console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter' : 'mouse click')+'.');
+        post: function() {},
+        url: "/staff/data/",
+        selection: false,
+        navigation: 2,
+        padding:1,
+        formatters:{
+            "link":function(column, row) {
+                return '<span class="glyphicon glyphicon-edit" staff_id="'+row.id+'" aria-hidden="true"></span>'+
+                '<span class="glyphicon glyphicon-trash" staff_id="'+row.id+'" aria-hidden="true"></span>';
+            }
         }
     });
+
 })
 
 </script>
