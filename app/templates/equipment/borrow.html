@@ -47,6 +47,7 @@ $(document).ready(function(){
     });
 
     $('input[name=key_name]').autoComplete({
+        minChars: 1,
         source: function(term, response){
             $.ajax({
                 type: "POST",
