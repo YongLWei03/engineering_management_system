@@ -27,8 +27,14 @@ def staff_data():
     r_json["current"] = current
     r_json["rowCount"] = rowCount
 
-    count = User.get_count()
-    all_staff = User.get_all_user()[(current-1)*rowCount: current*rowCount]
+    search_name = request.form.get("search_name")
+    if search_name:
+        staffs = User.query.filter(User.name.like('%'+search_name+'%')).all()
+        count = len(staffs)
+        all_staff = [i.to_dict() for i in staffs[(current-1)*rowCount:current*rowCount]]
+    else:
+        count = User.get_count()
+        all_staff = User.get_all_user()[(current-1)*rowCount: current*rowCount]
 
     r_json['rows'] = all_staff
     r_json['total'] = count
