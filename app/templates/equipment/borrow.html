@@ -86,7 +86,7 @@ $(document).ready(function(){
         if(templete_id.length!=0){
             $("#grid-data").bootgrid("deselect", templete_id);
         }
-        templete_id[0] = row.id;
+        templete_id[0] = row[0].id;
         console.log(row[0].id);
     });
 
