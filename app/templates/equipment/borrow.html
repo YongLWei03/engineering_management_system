@@ -35,7 +35,6 @@
                     <th data-column-id="employee_id"  data-width="15%">员工编号</th>
                     <th data-column-id="email" data-sortable="false" data-width="20%">邮箱</th>
                     <th data-column-id="gender" data-sortable="false"  data-width="8%">性别</th>
-                    <th data-column-id="sender" data-sortable="false" data-formatter="link" data-width="13%">操作</th>
                 </tr>
             </thead>
         </table>
@@ -79,12 +78,6 @@ $(document).ready(function(){
         selection: false,
         navigation: 2,
         padding:1,
-        formatters:{
-            "link":function(column, row) {
-                return '<span class="glyphicon glyphicon-edit" staff_id="'+row.id+'" aria-hidden="true"></span>'+
-                '<span class="glyphicon glyphicon-trash" staff_id="'+row.id+'" aria-hidden="true"></span>';
-            }
-        }
     });
 
     $("input[name=search_name]").keyup(function() {
