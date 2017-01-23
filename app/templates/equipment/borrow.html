@@ -19,7 +19,7 @@
     <section>
         <div class="">
             <span>借出人员</span>
-            <input type="text" name="name" class="form-control" />
+            <input type="text" name="key_name" class="form-control" />
         </div>
     </section>
     <h3>选择人员</h3>
@@ -46,7 +46,7 @@ $(document).ready(function(){
         autoFocus: true
     });
 
-    $('input[name="q"]').autoComplete({
+    $('input[name=key_name]').autoComplete({
         source: function(term, response){
             $.ajax({
                 type: "POST",
