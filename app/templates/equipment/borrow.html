@@ -81,8 +81,12 @@ $(document).ready(function(){
         navigation: 2,
         padding:1,
     });
+    var templete_id='';
     $("#grid-data").bootgrid().on("selected.rs.jquery.bootgrid", function (e,row){
-        console.log(row);
+        if(templete_id!=''){
+            $("#grid-data").bootgrid("deselect", [templete_id]);
+        }
+        console.log(row.id);
     });
 
     $("input[name=search_name]").keyup(function() {
