@@ -24,7 +24,7 @@
     margin: 0;
 }
 
-.wizard ul > li,
+.wizard .steps > ul > li,
 .tabcontrol ul > li
 {
     display: block;
