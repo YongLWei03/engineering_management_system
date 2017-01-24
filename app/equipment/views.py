@@ -101,7 +101,9 @@ def borrow():
 
 @equipment.route("/borrow/select_staff/", methods=["POST"])
 def borroe_select_staff():
+    r_json = {}
     name_key = request.form.get('name_key')
     staffs = User.query.filter(User.name.like('%'+name_key+'%')).all()
     staffs_dict = [i.to_dict() for i in staffs]
+    r_json['rows'] = staffs_dict
     return json.dumps(staffs_dict)
