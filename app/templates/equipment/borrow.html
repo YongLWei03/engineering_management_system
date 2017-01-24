@@ -76,8 +76,17 @@ $(document).ready(function(){
         },
         url: "/staff/data/",
         selection: true,
+        multiSelect:true,
+        rowSelect:true,
         navigation: 2,
         padding:1,
+    });
+    var templete_id=[];
+    $("#grid-data").bootgrid().on("selected.rs.jquery.bootgrid", function (e,row){
+        if(templete_id.length!=0){
+            $("#grid-data").bootgrid("deselect", templete_id);
+        }
+        templete_id[0] = row[0].id;
     });
 
     $("input[name=search_name]").keyup(function() {
