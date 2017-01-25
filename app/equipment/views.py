@@ -7,6 +7,7 @@ from flask import render_template, request
 from flask_login import login_required, current_user
 from flask import current_app
 from werkzeug.utils import secure_filename
+from sqlalchemy import and_
 
 from . import equipment
 from app.models import Equipment, User
@@ -30,9 +31,14 @@ def equipment_data():
     r_json["current"] = current
     r_json["rowCount"] = rowCount
 
-    em_name = request.form.get('em_name')
+    em_name = request.form.get('search_equipment')
     if em_name:
-        pass
+        # 搜索能借出的设备信息
+        query_eqm = Equipment.query.filter(
+            and_(Equipment.name.like('%'+em_name+'%'),
+                 Equipment.status == 1)).all()
+        count = len(query_eqm)
+        all_equipment = query_eqm[(current-1)*rowCount: current*rowCount]
     else:
         count = Equipment.get_count()
         all_equipment = Equipment.get_all_equipment()[
