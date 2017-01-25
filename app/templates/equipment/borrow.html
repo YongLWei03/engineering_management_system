@@ -12,10 +12,10 @@
 .form-control{width: 200px;display: inline-block;}
 
 /*bootgrid*/
-#grid-data tr{height: 40px;}
-#grid-data tr > td{padding: 10px 5px 10px;}
-#grid-data .glyphicon{margin-right:10px;cursor: pointer;}
-#grid-data .glyphicon:hover{color: #0c6cc0;}
+.grid-data tr{height: 40px;}
+.grid-data tr > td{padding: 10px 5px 10px;}
+.grid-data .glyphicon{margin-right:10px;cursor: pointer;}
+.grid-data .glyphicon:hover{color: #0c6cc0;}
 </style>
 {% endblock %}
 
@@ -27,7 +27,7 @@
             <span>请输入姓名搜索</span>
             <input type="text" name="search_name" class="form-control" placeholder="请输入姓名搜索" />
         </div>
-        <table id="grid-data-user" class="table table-condensed table-hover">
+        <table id="grid-data-user" class="table table-condensed table-hover grid-data">
             <thead>
                 <tr>
                     <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
@@ -45,7 +45,7 @@
             <span>请输入姓名搜索</span>
             <input type="text" name="search_equipment" class="form-control" placeholder="请输入设备名称搜索" />
         </div>
-        <table id="grid-data-equipment" class="table table-condensed table-hover">
+        <table id="grid-data-equipment" class="table table-condensed table-hover grid-data">
             <thead>
                 <tr>
                     <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
