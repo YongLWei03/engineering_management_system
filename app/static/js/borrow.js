@@ -27,8 +27,8 @@ $(document).ready(function(){
     });
     var templete_user_id=[];
     $("#grid-data-user").bootgrid().on("selected.rs.jquery.bootgrid", function (e,row){
-        if(templete_id.length!=0){
-            $("#grid-data-user").bootgrid("deselect", templete_id);
+        if(templete_user_id.length!=0){
+            $("#grid-data-user").bootgrid("deselect", templete_user_id);
         }
         templete_user_id[0] = row[0].id;
     });
