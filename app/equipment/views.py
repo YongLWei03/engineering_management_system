@@ -30,9 +30,13 @@ def equipment_data():
     r_json["current"] = current
     r_json["rowCount"] = rowCount
 
-    count = Equipment.get_count()
-    all_equipment = Equipment.get_all_equipment()[
-        (current-1)*rowCount: current*rowCount]
+    em_name = request.form.get('em_name')
+    if em_name:
+        pass
+    else:
+        count = Equipment.get_count()
+        all_equipment = Equipment.get_all_equipment()[
+            (current-1)*rowCount: current*rowCount]
 
     r_json['rows'] = all_equipment
     r_json['total'] = count
@@ -101,7 +105,9 @@ def borrow():
 
 @equipment.route("/borrow/select_staff/", methods=["POST"])
 def borroe_select_staff():
+    r_json = {}
     name_key = request.form.get('name_key')
     staffs = User.query.filter(User.name.like('%'+name_key+'%')).all()
     staffs_dict = [i.to_dict() for i in staffs]
+    r_json['rows'] = staffs_dict
     return json.dumps(staffs_dict)
