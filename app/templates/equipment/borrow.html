@@ -21,13 +21,13 @@
 
 {% block content %}
 <div id="equipmentBorrow">
-    <h3>选择设备</h3>
+    <h3>选择人员</h3>
     <section>
         <div>
             <span>请输入姓名搜索</span>
             <input type="text" name="search_name" class="form-control" placeholder="请输入姓名搜索" />
         </div>
-        <table id="grid-data" class="table table-condensed table-hover">
+        <table id="grid-data-user" class="table table-condensed table-hover">
             <thead>
                 <tr>
                     <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
@@ -39,10 +39,24 @@
             </thead>
         </table>
     </section>
-    <h3>选择人员</h3>
+    <h3>选择设备</h3>
     <section>
-        <p>选择人员</p>
-    </section>
+        <div>
+            <span>请输入姓名搜索</span>
+            <input type="text" name="search_equipment" class="form-control" placeholder="请输入设备名称搜索" />
+        </div>
+        <table id="grid-data-equipment" class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
+                    <th data-column-id="name" data-type="numeric" data-width="18%">设备名称</th>
+                    <th data-column-id="model"  data-width="15%">型号</th>
+                    <th data-column-id="number" data-sortable="false" data-width="20%">编号</th>
+                    <th data-column-id="status_txt" data-sortable="false"  data-width="8%">状态</th>
+                </tr>
+            </thead>
+        </table>
+、    </section>
     <h3>借出设备</h3>
     <section>
         <p>借出设备</p>
@@ -54,46 +68,5 @@
 {{ super() }}
 <script src="http://cdn.bootcss.com/jquery-steps/1.1.0/jquery.steps.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>
-<script>
-$(document).ready(function(){
-    $("#equipmentBorrow").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        autoFocus: true
-    });
-
-    $("#grid-data").bootgrid({
-        ajax: true,
-        ajaxSettings: {
-            method:"POST",
-            cache: false
-        },
-        post: function() {
-            return {
-                "search_name":$("input[name=search_name]").val()
-            }
-        },
-        url: "/staff/data/",
-        selection: true,
-        multiSelect:true,
-        rowSelect:true,
-        navigation: 2,
-        padding:1,
-    });
-    var templete_id=[];
-    $("#grid-data").bootgrid().on("selected.rs.jquery.bootgrid", function (e,row){
-        if(templete_id.length!=0){
-            $("#grid-data").bootgrid("deselect", templete_id);
-        }
-        templete_id[0] = row[0].id;
-    });
-
-    $("input[name=search_name]").keyup(function() {
-        $("#grid-data").bootgrid("reload");
-    })
-
-})
-
-</script>
+<script src="../static/js/borrow.js"></script>
 {% endblock %}
