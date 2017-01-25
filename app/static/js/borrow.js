@@ -1,11 +1,12 @@
 $(document).ready(function(){
+    // 分步骤
     $("#equipmentBorrow").steps({
         headerTag: "h3",
         bodyTag: "section",
         transitionEffect: "slideLeft",
         autoFocus: true
     });
-
+    // 第一步，搜索选择人员
     $("#grid-data-user").bootgrid({
         ajax: true,
         ajaxSettings: {
@@ -35,7 +36,7 @@ $(document).ready(function(){
     $("input[name=search_name]").keyup(function() {
         $("#grid-data-user").bootgrid("reload");
     });
-
+    // 第二步，搜索选择设备
     $("#grid-data-equipment").bootgrid({
         ajax: true,
         ajaxSettings: {
@@ -54,9 +55,8 @@ $(document).ready(function(){
         navigation: 2,
         padding:1,
     });
-    $("#grid-data-user").bootgrid().on("selected.rs.jquery.bootgrid", function (e,row){
 
-    });
+    var euquipment_ids = $("#grid-data-user").bootgrid("getSelectedRows");
 
     $("input[name=search_equipment]").keyup(function() {
         $("#grid-data-equipment").bootgrid("reload");
