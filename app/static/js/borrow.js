@@ -82,11 +82,13 @@ $(document).ready(function(){
         $("#grid-data-equipment").bootgrid("reload");
     });
     var date = new Date();
+    $("input[name=start]").val(date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate())
     $('.input-daterange').datepicker({
         format: "yyyy-mm-dd",
         todayHighlight: true,
         todayBtn: "linked",
-        defaultViewDate: { year: date.getFullYear(), month: date.getMonth(), day: date.getDate() }
+        language: "zh-CN"
+        // defaultViewDate: { year: date.getFullYear(), month: date.getMonth(), day: date.getDate() }
     });
 
 
