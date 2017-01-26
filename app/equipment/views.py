@@ -36,7 +36,7 @@ def equipment_data():
         # 搜索能借出的设备信息
         query_eqm = Equipment.query.filter(
             and_(Equipment.name.like('%'+em_name+'%'),
-                 Equipment.status == 1)).all()
+                 Equipment.status == 0)).all()
         count = len(query_eqm)
         all_equipment = query_eqm[(current-1)*rowCount: current*rowCount]
     else:
