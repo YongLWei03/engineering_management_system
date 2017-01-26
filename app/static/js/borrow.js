@@ -82,5 +82,10 @@ $(document).ready(function(){
         $("#grid-data-equipment").bootgrid("reload");
     });
 
+    $('.input-daterange').datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true
+    });
+
 
 })
