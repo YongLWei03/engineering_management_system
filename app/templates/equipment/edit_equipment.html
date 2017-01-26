@@ -90,9 +90,10 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
         $('input[name=buy_date]').datepicker({
             format: "yyyy-mm-dd"
         });
-
+        
+        var formData = new FormData();
         var equipForm = document.getElementById("equipForm");
-        var formData = new FormData(equipForm);
+        formData = new FormData(equipForm);
         console.log(formData);
 
 
