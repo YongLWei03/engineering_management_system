@@ -59,7 +59,24 @@
 、    </section>
     <h3>借出设备</h3>
     <section>
-        <p>借出设备</p>
+        <form>
+            <div class="form-row">
+                <span>借出人</span>
+                <input name="user_name" class="form-control" readonly />
+            </div>
+            <div class="form-row">
+                <span>设备名称</span>
+                <input name="equipment_name" class="form-control" readonly />
+            </div>
+            <div class="form-row input-daterange input-group" id="datepicker">
+                <input type="text" class="input-sm form-control" name="start" />
+                <span class="input-group-addon">to</span>
+                <input type="text" class="input-sm form-control" name="end" />
+            </div>
+            <div class="form-row">
+                <button class="btn btn-primary"></button>
+            </div>
+        </form>
     </section>
 </div>
 {% endblock %}
