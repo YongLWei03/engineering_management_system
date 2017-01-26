@@ -74,7 +74,7 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
                 <textarea name="profile" class="form-control">{{ equipment_info.profile }}</textarea>
             </div>
             <div class="form-group save-group">
-                 <button type="submit" class="btn btn-primary" id="submitBtn">保存</button>
+                 <button class="btn btn-primary" id="submitBtn">保存</button>
             </div>
        </form>
     </div>
@@ -90,11 +90,17 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
         $('input[name=buy_date]').datepicker({
             format: "yyyy-mm-dd"
         });
-        
-        var formData = new FormData();
-        var equipForm = document.getElementById("equipForm");
-        formData = new FormData(equipForm);
-        console.log(formData);
+
+        $("#submitBtn").click(function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var equipForm = document.getElementById("equipForm");
+            var formData = new FormData(equipForm);
+            console.log(formData);
+
+
+        })
+
 
 
     });
