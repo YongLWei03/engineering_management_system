@@ -19,7 +19,8 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
 {% block content %}
 <div class="container-fluid" style="background-color:white">
     <div class="main-panel">
-        <form id="equipForm" enctype="multipart/form-data" action="/equipment/edit/" method="post">
+        <!--  enctype="multipart/form-data" action="/equipment/edit/" method="post" -->
+        <form id="equipForm">
             <input type="hidden" name="equipment_id" value="{{ equipment_info.id }}" />
             <div class="form-group">
                 <label for="name" class="control-label">名称</label>
@@ -85,9 +86,17 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
     <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script>
     $(function() {
+        // 初始化日历
         $('input[name=buy_date]').datepicker({
             format: "yyyy-mm-dd"
         });
+
+        var equipForm = document.getElementById("equipForm");
+        var formData = new FormData(equipForm);
+        console.log(formData);
+
+
     });
+
     </script>
 {% endblock %}
