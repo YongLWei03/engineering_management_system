@@ -19,8 +19,7 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
 {% block content %}
 <div class="container-fluid" style="background-color:white">
     <div class="main-panel">
-        <!--  enctype="multipart/form-data" action="/equipment/edit/" method="post" -->
-        <form id="equipForm">
+        <form id="equipForm" enctype="multipart/form-data" action="/equipment/edit/" method="post">
             <input type="hidden" name="equipment_id" value="{{ equipment_info.id }}" />
             <div class="form-group">
                 <label for="name" class="control-label">名称</label>
@@ -74,7 +73,7 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
                 <textarea name="profile" class="form-control">{{ equipment_info.profile }}</textarea>
             </div>
             <div class="form-group save-group">
-                 <button class="btn btn-primary" id="submitBtn">保存</button>
+                 <button type="submit" class="btn btn-primary" id="submitBtn">保存</button>
             </div>
        </form>
     </div>
@@ -86,33 +85,9 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
     <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script>
     $(function() {
-        // 初始化日历
         $('input[name=buy_date]').datepicker({
             format: "yyyy-mm-dd"
         });
-
-        $("#submitBtn").click(function(e) {
-            e.stopPropagation();
-            e.preventDefault();
-            var equipForm = document.getElementById("equipForm");
-            var formData = new FormData(equipForm);
-            $.ajax({
-                type:"POST",
-                url:"/equipment/edit/",
-                data:formData,
-                processData: false,
-                contentType: false,
-                success:function(msg) {
-
-                }
-            })
-
-
-        })
-
-
-
     });
-
     </script>
 {% endblock %}
