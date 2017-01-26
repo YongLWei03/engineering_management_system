@@ -82,7 +82,8 @@ $(document).ready(function(){
         $("#grid-data-equipment").bootgrid("reload");
     });
     var date = new Date();
-    $("input[name=start]").val(date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate())
+    $("input[name=start]").val(date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
+    $("input[name=end]").val("2017-2-10");
     $('.input-daterange').datepicker({
         format: "yyyy-mm-dd",
         todayHighlight: true,
