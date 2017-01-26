@@ -95,7 +95,6 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
             e.stopPropagation();
             e.preventDefault();
             var equipForm = document.getElementById("equipForm");
-            console.log(equipForm);
             var formData = new FormData(equipForm);
             $.ajax({
                 type:"POST",
@@ -103,7 +102,7 @@ textarea{vertical-align: middle;height: 100px;overflow: scroll;}
                 data:formData,
                 processData: false,
                 contentType: false,
-                success:function() {
+                success:function(msg) {
 
                 }
             })
