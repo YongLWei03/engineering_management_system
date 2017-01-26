@@ -81,10 +81,12 @@ $(document).ready(function(){
     $("input[name=search_equipment]").keyup(function() {
         $("#grid-data-equipment").bootgrid("reload");
     });
-
+    var date = new Date();
     $('.input-daterange').datepicker({
         format: "yyyy-mm-dd",
-        todayHighlight: true
+        todayHighlight: true,
+        todayBtn: "linked",
+        defaultViewDate: { year: date.getFullYear(), month: date.getMonth(), day: date.getDate() }
     });
 
 
