@@ -83,13 +83,11 @@ $(document).ready(function(){
     });
     var date = new Date();
     $("input[name=start]").val(date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
-    $("input[name=end]").val("2017-2-10");
     $('.input-daterange').datepicker({
         format: "yyyy-mm-dd",
+        language: "zh-CN",
         todayHighlight: true,
         todayBtn: "linked",
-        language: "zh-CN"
-        // defaultViewDate: { year: date.getFullYear(), month: date.getMonth(), day: date.getDate() }
     });
 
 
