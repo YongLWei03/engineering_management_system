@@ -108,16 +108,16 @@ class Equipment(db.Model):
     price = db.Column(db.Float)
     # 厂商
     vendor = db.Column(db.String(64))
-    # 状态，1正常，2禁用，3维修中，4借出，5报废
+    # 状态，0正常，1禁用，2维修中，3借出，4报废
     status = db.Column(db.SmallInteger)
 
     def to_dict(self):
         status_dict = {
-            1: u'正常',
-            2: u'禁用',
-            3: u'维修中',
-            4: u'借出',
-            5: u'报废'
+            0: u'正常',
+            1: u'禁用',
+            2: u'维修中',
+            3: u'借出',
+            4: u'报废'
         }
 
         return {
