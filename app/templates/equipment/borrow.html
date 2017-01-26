@@ -12,8 +12,9 @@
 .tab-pane{width: 80%;margin: 50px auto 30px;}
 #equipmentBorrow .form-control{width: 200px;display: inline-block;}
 .form-row{margin: 20px 0;}
-#equipmentBorrow .form-row .title{display: inline-block;width: 100px;}
+#equipmentBorrow .form-row .title{display: inline-table;width: 100px;}
 
+#datepicker{width: 439px;display: inline-table;vertical-align: middle;}
 /*bootgrid*/
 .grid-data tr{height: 40px;}
 .grid-data tr > td{padding: 10px 5px 10px;}
@@ -65,18 +66,18 @@
         <form>
             <div class="form-row">
                 <span class="title">借出人</span>
-                <input name="user_name" class="form-control" readonly />
+                <input type="text" name="user_name" class="form-control" readonly />
             </div>
             <div class="form-row">
                 <span class="title">设备名称</span>
-                <input name="equipment_name" class="form-control" readonly />
+                <input type="text" name="equipment_name" class="form-control" readonly />
             </div>
             <div class="form-row">
                 <span class="title">借出时间</span>
                 <div class="input-daterange input-group" id="datepicker">
-                    <input type="text" class="input-sm form-control" name="start" />
+                    <input type="text" class="form-control" name="start" />
                     <span class="input-group-addon">to</span>
-                    <input type="text" class="input-sm form-control" name="end" />
+                    <input type="text" class="form-control" name="end" />
                 </div>
             </div>
             <div class="form-row">
