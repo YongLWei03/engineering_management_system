@@ -25,18 +25,23 @@ $(document).ready(function(){
         navigation: 2,
         padding:1,
     });
-    var templete_user_id=[];
+    var templete_user_id = [];
+    var templete_user_name = '';
     $("#grid-data-user").bootgrid().on("selected.rs.jquery.bootgrid", function (e,row){
         if(templete_user_id.length!=0){
             $("#grid-data-user").bootgrid("deselect", templete_user_id);
         }
         templete_user_id[0] = row[0].id;
+        templete_user_name = row[0].name;
+        $("input[name=user_name]").val(templete_user_name);
     });
 
     $("input[name=search_name]").keyup(function() {
         $("#grid-data-user").bootgrid("reload");
     });
     // 第二步，搜索选择设备
+    var equipment_ids = [];
+    var equipment_names = [];
     $("#grid-data-equipment").bootgrid({
         ajax: true,
         ajaxSettings: {
@@ -54,12 +59,35 @@ $(document).ready(function(){
         rowSelect:true,
         navigation: 2,
         padding:1,
+    }).on("selected.rs.jquery.bootgrid", function(e, rows){
+        for (var i = 0; i < rows.length; i++){
+            equipment_ids.push(rows[i].id);
+            equipment_names.push(rows[i].name);
+        }
+        $("input[name=equipment_name]").val(equipment_names.join(","));
+    }).on("deselected.rs.jquery.bootgrid", function(e, rows){
+        for (var i = 0; i < rows.length; i++){
+            for (var j = 0; j < equipment_ids.length; j++) {
+                if (equipment_ids[j].id == rows[i].id) {
+                    delete equipment_ids[j];
+                    delete equipment_names[j];
+                    break;
+                }
+            }
+        }
+        $("input[name=equipment_name]").val(equipment_names.join(","));
     });
-
-    var euquipment_ids = $("#grid-data-user").bootgrid("getSelectedRows");
 
     $("input[name=search_equipment]").keyup(function() {
         $("#grid-data-equipment").bootgrid("reload");
+    });
+    var date = new Date();
+    $("input[name=start]").val(date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
+    $('.input-daterange').datepicker({
+        format: "yyyy-mm-dd",
+        language: "zh-CN",
+        todayHighlight: true,
+        todayBtn: "linked",
     });
 
 
