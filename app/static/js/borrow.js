@@ -4,7 +4,10 @@ $(document).ready(function(){
         headerTag: "h3",
         bodyTag: "section",
         transitionEffect: "slideLeft",
-        autoFocus: true
+        autoFocus: true,
+        onFinished: function(event,currentIndex) {
+            console.log("aaa");
+        }
     });
     // 第一步，搜索选择人员
     $("#grid-data-user").bootgrid({
@@ -89,4 +92,5 @@ $(document).ready(function(){
         todayBtn: "linked",
         language: "zh-CN"
     });
-})
+
+});
