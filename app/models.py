@@ -143,3 +143,13 @@ class Equipment(db.Model):
     def get_all_equipment(cls):
         query = db.session.query(cls).all()
         return [i.to_dict() for i in query]
+
+
+class borrow_records(db.Model):
+    __tablename__ = 'borrow_records'
+    id = db.Column(db.Integer, primary_key=True)
+    staff_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    equipment_id = db.Column(db.Integer, db.ForeignKey('equipments.id'))
+    borrow_date = db.Column(db.Date)
+    return_date = db.Column(db.Date)
+    remark = db.Column(db.String(64))
