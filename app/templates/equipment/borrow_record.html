@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.css" rel="stylesheet">
+<style>
+.main-panel{height:45em;background-color:#fff;}
+.tab-pane{width: 80%;margin: 50px auto 30px;}
+
+/*bootgrid*/
+#grid-data tr{height: 40px;}
+#grid-data tr > td{padding: 10px 5px 10px;}
+#grid-data .glyphicon{margin-right:10px;cursor: pointer;}
+#grid-data .glyphicon:hover{color: #0c6cc0;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid main-panel">
+    <div class="row">
+        <div role="tabpanel" class="tab-pane active" id="byTest">
+            <div class="rqm-table2 com-drop">
+                <table id="grid-data" class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th data-column-id="id" data-visible="false" data-type="numeric" data-identifier="true" data-width="3%"></th>
+                            <th data-column-id="name" data-type="numeric" data-width="18%">借出人</th>
+                            <th data-column-id="model"  data-width="15%">借出设备</th>
+                            <th data-column-id="number" data-sortable="false" data-width="20%">归还时间</th>
+                            <th data-column-id="status_txt" data-sortable="false"  data-width="8%">备注</th>
+                            <th data-column-id="sender" data-sortable="false" data-formatter="link" data-width="13%">操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+    <script src="//cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#grid-data").bootgrid({
+            ajax: true,
+            ajaxSettings: {
+                method:"POST",
+                cache: false
+            },
+            post: function() {},
+            url: "/equipment/data/",
+            selection: false,
+            navigation: 2,
+            padding:1,
+            formatters:{
+                "link":function(column, row) {
+                    return '<span class="glyphicon glyphicon-trash" equipment_id="'+row.id+'" aria-hidden="true"></span>'+
+                    '<span class="glyphicon glyphicon-send" equipment_id="'+row.id+'" aria-hidden="true"></span>';
+                }
+            }
+        });
+
+        //删除
+        $("#grid-data").bootgrid().on("loaded.rs.jquery.bootgrid", function() {
+            $("#grid-data").bootgrid().find(".glyphicon-trash").on("click", function(e) {
+                var paperId = $(this).attr("equipment_id");
+                e.stopPropagation();
+                e.preventDefault();
+                $.ajax({
+                    type: "GET",
+                    cache : false,
+                    headers: { "cache-control": "no-cache" },
+                    url: "/equipment/remove/"+paperId,
+                    success: function(msg){
+                        if(msg=="success"){
+                            $("#grid-data").bootgrid("reload");
+                        }
+                    }
+                });
+            })
+        });
+
+        //编辑
+        $("#grid-data").bootgrid().on("loaded.rs.jquery.bootgrid", function() {
+            $("#grid-data").bootgrid().find(".glyphicon-send").on("click", function(e) {
+                var paperId = $(this).attr("equipment_id");
+                e.stopPropagation();
+                e.preventDefault();
+                $.ajax({
+                    type: "GET",
+                    cache : false,
+                    headers: { "cache-control": "no-cache" },
+                    url: "/equipment/remove/"+paperId,
+                    success: function(msg){
+                        if(msg=="success"){
+                            $("#grid-data").bootgrid("reload");
+                        }
+                    }
+                });
+            })
+        });
+
+    })
+
+    </script>
+{% endblock %}
