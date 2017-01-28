@@ -1,5 +1,6 @@
 body{
     background:url(../image/background.jpg);
+    background-position: center;
     padding:50px;
 }
 
