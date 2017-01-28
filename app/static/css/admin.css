@@ -5,6 +5,7 @@ body{
 }
 
 /*nav-bar*/
+.navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>li>a{color: #dbdbdb;}
 .navbar-nav > .dropdown:hover .dropdown-menu{display: block;}
 .navbar-nav .dropdown-menu{padding: 0;text-align: center;}
 .navbar-nav .dropdown-menu .divider{margin: 0;}
