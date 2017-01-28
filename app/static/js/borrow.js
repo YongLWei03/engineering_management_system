@@ -81,14 +81,12 @@ $(document).ready(function(){
     $("input[name=search_equipment]").keyup(function() {
         $("#grid-data-equipment").bootgrid("reload");
     });
+
     var date = new Date();
-    $("input[name=start]").val(date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
-    $('.input-daterange').datepicker({
+    $("input[name=borrow_date]").val(date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate());
+    $('input[name=borrow_date]').datepicker({
         format: "yyyy-mm-dd",
-        language: "zh-CN",
-        todayHighlight: true,
         todayBtn: "linked",
+        language: "zh-CN"
     });
-
-
 })
