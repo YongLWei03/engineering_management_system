@@ -6,7 +6,20 @@ $(document).ready(function(){
         transitionEffect: "slideLeft",
         autoFocus: true,
         onFinished: function(event,currentIndex) {
-            console.log("aaa");
+            var dataForm = $("#borrowForm").serialize();
+            $.ajax({
+                type: "POST",
+        		cache: false,
+        		headers: { "cache-control": "no-cache" },
+        		dataType: "json",
+        		url: "/equipment/borrow/",
+        		data: dataForm,
+                success:function(msg) {
+                    if(msg.msg=="true"){
+                        window.location.href="";
+                    }
+                }
+            })
         }
     });
     // 第一步，搜索选择人员
@@ -37,10 +50,15 @@ $(document).ready(function(){
         templete_user_id[0] = row[0].id;
         templete_user_name = row[0].name;
         $("input[name=user_name]").val(templete_user_name);
+        $("input[name=user_id]").val(templete_user_id[0]);
     });
 
     $("input[name=search_name]").keyup(function() {
         $("#grid-data-user").bootgrid("reload");
+        templete_user_id = [];
+        templete_user_name = '';
+        $("input[name=user_name]").val(templete_user_name);
+        $("input[name=user_id]").val(templete_user_id[0]);
     });
     // 第二步，搜索选择设备
     var equipment_ids = [];
@@ -68,6 +86,7 @@ $(document).ready(function(){
             equipment_names.push(rows[i].name);
         }
         $("input[name=equipment_name]").val(equipment_names.join(","));
+        $("input[name=equipment_ids]").val(equipment_ids.join(","));
     }).on("deselected.rs.jquery.bootgrid", function(e, rows){
         for (var i = 0; i < rows.length; i++){
             for (var j = 0; j < equipment_ids.length; j++) {
@@ -79,10 +98,15 @@ $(document).ready(function(){
             }
         }
         $("input[name=equipment_name]").val(equipment_names.join(","));
+        $("input[name=equipment_ids]").val(equipment_ids.join(","));
     });
 
     $("input[name=search_equipment]").keyup(function() {
         $("#grid-data-equipment").bootgrid("reload");
+        equipment_ids = [];
+        equipment_names = [];
+        $("input[name=equipment_name]").val("");
+        $("input[name=equipment_ids]").val("");
     });
 
     var date = new Date();

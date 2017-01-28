@@ -63,14 +63,16 @@
 、    </section>
     <h3>借出设备</h3>
     <section style="width:100%;">
-        <form>
+        <form id="borrowForm">
             <div class="form-row">
                 <span class="title">借出人</span>
                 <input type="text" name="user_name" class="form-control" readonly />
+                <input type="hidden" name="user_id" />
             </div>
             <div class="form-row">
                 <span class="title">设备名称</span>
                 <input type="text" name="equipment_name" class="form-control" readonly />
+                <input type="hidden" name="equipment_ids" />
             </div>
             <div class="form-row">
                 <span class="title">借出时间</span>
