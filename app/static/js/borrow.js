@@ -83,7 +83,7 @@ $(document).ready(function(){
     });
 
     var date = new Date();
-    $("input[name=borrow_date]").val(date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate());
+    $("input[name=borrow_date]").val(date.getFullYear()+'-'+(((date.getMonth()+1)>9)?(date.getMonth()+1):'0'+(date.getMonth()+1))+'-'+date.getDate());
     $('input[name=borrow_date]').datepicker({
         format: "yyyy-mm-dd",
         todayBtn: "linked",
