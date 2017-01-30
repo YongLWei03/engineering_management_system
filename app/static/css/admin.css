@@ -14,9 +14,9 @@ body{
 .navbar-nav .dropdown-menu>li>a{padding: 0;line-height: 40px;}
 .navbar-nav .dropdown-menu>li>a:focus,.navbar-nav .dropdown-menu>li>a:hover{background-color: #bfdeca;}
 /*btn*/
-.btn-primary{background-color: #1b582d!important;border-color: #144222!important;}
-.btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222!important;border-color: #0c2714!important; }
-.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{outline: 5px auto #2a8847!important;}
+.btn-primary{background-color: #1b582d;border-color: #144222;}
+.btn-primary:hover,.btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222;border-color: #0c2714; }
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{outline: 5px auto #2a8847;}
 
 /*bootgrid*/
 .pagination>li>a, .pagination>li>span{color: #1b582d;}
