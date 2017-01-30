@@ -23,5 +23,5 @@ body{
 
 .login .panel-body{padding-bottom: 35px;text-align: center;background-color: #dae5e6;}
 .login .btn-primary{width: 80%;background-color: #1b582d;border-color: #144222;}
-.login .btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#0c2714; }
+.login .btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222;border-color: #0c2714; }
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{outline: 5px auto #2a8847;}
