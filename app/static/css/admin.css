@@ -18,6 +18,10 @@ body{
 .btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222;border-color: #0c2714; }
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{outline: 5px auto #2a8847;}
 
+/*bootgrid*/
+.pagination>li>a, .pagination>li>span{color: #1b582d;}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{background-color: #1b582d;}
+
 #login-dp{min-width: 250px;padding: 14px 14px 0;overflow:hidden;background-color:rgba(255,255,255,.8);}
 #login-dp .help-block{font-size:12px;}
 #login-dp .bottom{background-color:rgba(255,255,255,.8);border-top:1px solid #ddd;clear:both;padding:14px;}
