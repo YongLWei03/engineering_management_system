@@ -17,9 +17,9 @@ body{
 .login .user-row{text-align: center;font-size: 30px;}
 .login .img-responsive {display: block;max-width: 100%;height: auto;margin: auto;}
 .login .panel {margin-bottom: 20px;background-color: rgba(255, 255, 255, 0.75);border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);box-shadow: 0 1px 1px rgba(0, 0, 0, .05);}
-/*.login label{width: 15%;color: #449d44;text-shadow:#4cae4c;line-height: 34px;}*/
-.login hr{margin: 5px;}
+/*.login hr{margin: 5px;}*/
 
-.login .form-group .form-control{display: inline-block;width: 80%;}
+.login .input-group{width: 80%;margin: 20px auto;}
 
-.login .panel-body{padding: 35px 15px 25px;text-align: center;}
+.login .panel-body{padding-bottom: 35px;text-align: center;background-color: #dae5e6;}
+.login .btn-default{width: 80%;}
