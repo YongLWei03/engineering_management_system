@@ -15,7 +15,7 @@ body{
 .navbar-nav .dropdown-menu>li>a:focus,.navbar-nav .dropdown-menu>li>a:hover{background-color: #bfdeca;}
 /*btn*/
 .btn-primary{background-color: #1b582d;border-color: #144222;}
-.btn-primary:hover,.btn-primary:focus,.btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222;border-color: #0c2714; }
+.btn-primary:hover,.btn-primary:focus,.btn-primary:active,.btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222;border-color: #0c2714; }
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{outline: 5px auto #2a8847;}
 
 /*bootgrid*/
