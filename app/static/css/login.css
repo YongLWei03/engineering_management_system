@@ -22,4 +22,5 @@ body{
 .login .input-group{width: 80%;margin: 20px auto;}
 
 .login .panel-body{padding-bottom: 35px;text-align: center;background-color: #dae5e6;}
-.login .btn-primary{width: 80%;}
+.login .btn-primary{width: 80%;background-color: #1b582d;border-color: #144222;}
+.login .btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222; }
