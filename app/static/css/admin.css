@@ -7,7 +7,7 @@ body{
 /*nav-bar*/
 .navbar-inverse {background-color: #bbd2c4;border-color: #87968b;}
 .navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>li>a{color: #212b24;}
-.navbar-nav > .dropdown:hover .dropdown-menu{display: block;}
+.navbar-nav > .dropdown:hover .dropdown-menu{display: block;background-color: #d8fde5;}
 .navbar-nav .dropdown-menu{padding: 0;text-align: center;}
 .navbar-nav .dropdown-menu .divider{margin: 0;}
 .navbar-nav .dropdown-menu>li>a{padding: 0;line-height: 40px;}
