@@ -3,7 +3,6 @@
 body{
     /*background: url(https://unsplash.imgix.net/photo-1415226581130-91cb7f52f078?q=75&fm=jpg&s=859a0a6f863f8eb93a489c98402e687b);*/
     background: url(../image/SurveyImage.jpg);
-    background-position: center;
     background-color: #444;
     background-size:   cover;
     background-repeat: no-repeat;
