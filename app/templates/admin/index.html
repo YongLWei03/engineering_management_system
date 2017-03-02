@@ -1,1 +1,21 @@
 {% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<style>
+.intro-panel{position: absolute;width: 100%;margin-left: -50px;margin-top: 40px;}
+.jumbotron{width: 80%;margin: auto;border-radius: 6px;padding-left: 40px;padding-right: 40px;background-color: #f0f8ff}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="intro-panel">
+    <div class="jumbotron">
+        <h1>Hello, world!</h1>
+        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <p>
+            <a href="#" class="btn btn-primary btn-lg" role="button">Learn more</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

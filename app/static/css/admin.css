@@ -1,55 +1,40 @@
 body{
     background:url(../image/background.jpg);
+    background-position: center;
     padding:50px;
 }
 
-#login-dp{
-    min-width: 250px;
-    padding: 14px 14px 0;
-    overflow:hidden;
-    background-color:rgba(255,255,255,.8);
-}
-#login-dp .help-block{
-    font-size:12px    
-}
-#login-dp .bottom{
-    background-color:rgba(255,255,255,.8);
-    border-top:1px solid #ddd;
-    clear:both;
-    padding:14px;
-}
-#login-dp .social-buttons{
-    margin:12px 0    
-}
-#login-dp .social-buttons a{
-    width: 49%;
-}
-#login-dp .form-group {
-    margin-bottom: 10px;
-}
-.btn-fb{
-    color: #fff;
-    background-color:#3b5998;
-}
-.btn-fb:hover{
-    color: #fff;
-    background-color:#496ebc 
-}
-.btn-tw{
-    color: #fff;
-    background-color:#55acee;
-}
-.btn-tw:hover{
-    color: #fff;
-    background-color:#59b5fa;
-}
+/*nav-bar*/
+.navbar-inverse {background-color: #bbd2c4;border-color: #87968b;}
+.navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>li>a{color: #212b24;}
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover,.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{color: #1b582d;}
+.navbar-nav > .dropdown:hover .dropdown-menu{display: block;background-color: #d8fde5;}
+.navbar-nav .dropdown-menu{padding: 0;text-align: center;}
+.navbar-nav .dropdown-menu .divider{margin: 0;}
+.navbar-nav .dropdown-menu>li>a{padding: 0;line-height: 40px;}
+.navbar-nav .dropdown-menu>li>a:focus,.navbar-nav .dropdown-menu>li>a:hover{background-color: #bfdeca;}
+/*btn*/
+.btn-primary{background-color: #1b582d;border-color: #144222;}
+.btn-primary:hover,.btn-primary:focus,.btn-primary:active,.btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222;border-color: #0c2714; }
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{outline: 5px auto #2a8847;}
+
+/*bootgrid*/
+.pagination>li>a, .pagination>li>span{color: #1b582d;}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{background-color: #1b582d;border-color:#1b582d; }
+
+#login-dp{min-width: 250px;padding: 14px 14px 0;overflow:hidden;background-color:rgba(255,255,255,.8);}
+#login-dp .help-block{font-size:12px;}
+#login-dp .bottom{background-color:rgba(255,255,255,.8);border-top:1px solid #ddd;clear:both;padding:14px;}
+#login-dp .social-buttons{margin:12px 0;}
+#login-dp .social-buttons a{width: 49%;}
+#login-dp .form-group {margin-bottom: 10px;}
+
+.btn-fb{color: #fff;background-color:#3b5998;}
+.btn-fb:hover{color: #fff;background-color:#496ebc }
+.btn-tw{color: #fff;background-color:#55acee;}
+.btn-tw:hover{color: #fff;background-color:#59b5fa;}
+
 @media(max-width:768px){
-    #login-dp{
-        background-color: inherit;
-        color: #fff;
-    }
-    #login-dp .bottom{
-        background-color: inherit;
-        border-top:0 none;
-    }
+    #login-dp{background-color: inherit;color: #fff;}
+    #login-dp .bottom{background-color: inherit;border-top:0 none;}
 }

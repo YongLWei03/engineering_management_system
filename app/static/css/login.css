@@ -7,40 +7,20 @@ body{
     background-size:   cover;
     background-repeat: no-repeat;
     /*background-position: center center;  */
-    /*background: url(https://unsplash.imgix.net/photo-1415226581130-91cb7f52f078?q=75&fm=jpg&s=859a0a6f863f8eb93a489c98402e687b),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);    
+    /*background: url(https://unsplash.imgix.net/photo-1415226581130-91cb7f52f078?q=75&fm=jpg&s=859a0a6f863f8eb93a489c98402e687b),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);
 */
 }
 
-.vertical-offset-100{
-    padding-top:100px;
-}
-.login .user-row{
-    text-align: center;
-    font-size: 30px;
-}
+.vertical-offset-100{padding-top:100px;}
 
-.login .img-responsive {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: auto;
-}
+.login .user-row{text-align: center;font-size: 30px;}
+.login .img-responsive {display: block;max-width: 100%;height: auto;margin: auto;}
+.login .panel {margin-bottom: 20px;background-color: rgba(255, 255, 255, 0.75);border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);box-shadow: 0 1px 1px rgba(0, 0, 0, .05);}
+/*.login hr{margin: 5px;}*/
 
-.login.panel {
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.75);
-    border: 1px solid transparent;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-}
-.login label{
-    display: block;
-    width: 100%;
-    color: #449d44;
-    text-shadow:#4cae4c;
-    /*text-align: center;*/
-}
-.login hr{
-    margin: 5px;
-}
+.login .input-group{width: 80%;margin: 20px auto;}
+
+.login .panel-body{padding-bottom: 35px;text-align: center;background-color: #dae5e6;}
+.login .btn-primary{width: 80%;background-color: #1b582d;border-color: #144222;}
+.login .btn-primary:active:focus,.login .btn-primary:active:hover{background-color:#144222;border-color: #0c2714; }
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{outline: 5px auto #2a8847;}
