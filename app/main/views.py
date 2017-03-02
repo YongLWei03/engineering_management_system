@@ -16,5 +16,5 @@ def backend():
 
 
 @main.route("/frontend/", methods=["GET"])
-def backend():
+def frontend():
     return u"秋月的前端博客"
