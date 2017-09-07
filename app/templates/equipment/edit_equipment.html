@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<link href="//cdn.bootcss.com/zTree.v3/3.5.24/css/metroStyle/metroStyle.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<style>
+label{width: 100px;}
+.form-control {display: inline-block!important;width: 300px;}
+.main-panel{margin: 40px auto;width: 405px;}
+.save-group{text-align: center;margin-top: 40px;}
+.save-group .btn-primary{width: 200px;}
+.btn-picture{padding: 0;line-height: 34px;width: 82px;}
+input[type=file]{position: absolute;opacity: 0;filter: opacity(alpha=0);width: 82px;height: 34px;}
+textarea{vertical-align: middle;height: 100px;overflow: scroll;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="background-color:white">
+    <div class="main-panel">
+        <form id="equipForm" enctype="multipart/form-data" action="/equipment/edit/" method="post">
+            <input type="hidden" name="equipment_id" value="{{ equipment_info.id }}" />
+            <div class="form-group">
+                <label for="name" class="control-label">名称</label>
+                <input type="text" name="name" class="form-control" value="{{ equipment_info.name }}">
+            </div>
+            <div class="form-group">
+                <label for="surname" class="control-label">状态</label>
+                <select name="status">
+                    <option value="0" {% if equipment_info.status==0 %}selected{% endif %}>正常</option>
+                    <option value="1" {% if equipment_info.status==1 %}selected{% endif %}>禁用</option>
+                    <option value="2" {% if equipment_info.status==2 %}selected{% endif %}>维修中</option>
+                    <option value="3" {% if equipment_info.status==3 %}selected{% endif %}>借出</option>
+                    <option value="4" {% if equipment_info.status==4 %}selected{% endif %}>报废</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="model" class="control-label">型号</label>
+                <input type="text" name="model" class="form-control" value="{{ equipment_info.model }}">
+            </div>
+            <div class="form-group">
+                <label for="number" class="control-label">编号</label>
+                <input type="text" name="number" class="form-control" value="{{ equipment_info.number }}">
+            </div>
+            <div class="form-group">
+                <label for="buy_date" class="control-label">购买日期</label>
+                <input type="text" name="buy_date" class="form-control" value="{{ equipment_info.buy_date }}">
+            </div>
+            <div class="form-group">
+                <label for="price" class="control-label">价格</label>
+                <input type="text" name="price" class="form-control" value="{{ equipment_info.price }}">
+            </div>
+            <div class="form-group">
+                <label for="vendor" class="control-label">厂商</label>
+                <input type="text" name="vendor" class="form-control" value="{{ equipment_info.vendor }}">
+            </div>
+            <div class="form-group">
+                <label for="picture" class="control-label">照片</label>
+                <a class="btn btn-primary btn-picture">
+                    <input type="file" name="picture" />
+                    上传照片
+                </a>
+                <label>
+                <div style="margin: 10px 100px 0;border: 1px solid #ccc;">
+                    {% if equipment_info.picture %}
+                    <img src="{{ equipment_info.picture }}" style="width:150px;height:200px;" />
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="profile" class="control-label">简介</label>
+                <textarea name="profile" class="form-control">{{ equipment_info.profile }}</textarea>
+            </div>
+            <div class="form-group save-group">
+                 <button type="submit" class="btn btn-primary" id="submitBtn">保存</button>
+            </div>
+       </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="http://cdn.bootcss.com/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script>
+    $(function() {
+        $('input[name=buy_date]').datepicker({
+            format: "yyyy-mm-dd",
+            todayBtn: "linked",
+            language: "zh-CN"
+        });
+    });
+    </script>
+{% endblock %}
